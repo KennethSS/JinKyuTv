@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jinkyu.tv.Greeting
 import com.jinkyu.tv.SampleText
+import com.jinkyu.tv.VideoPlayer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,10 @@ class MainActivity : ComponentActivity() {
                     Column {
                         GreetingView(Greeting().greet())
                         SampleText()
+                        VideoPlayer(
+                            modifier = Modifier,
+                            url = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                        )
                     }
                 }
             }
