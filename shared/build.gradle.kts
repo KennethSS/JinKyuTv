@@ -48,6 +48,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(libs.compose.util)
                 implementation(libs.koin.core)
+                implementation(libs.koin.compose)
             }
         }
         val androidMain by getting {
@@ -55,7 +56,7 @@ kotlin {
                 implementation(libs.exoplayer)
                 implementation(libs.exoplayer.dash)
                 implementation(libs.exoplayer.ui)
-                implementation(libs.koin.compose)
+                implementation(libs.koin.androidx.compose)
             }
         }
         val iosMain by getting {
@@ -71,7 +72,6 @@ kotlin {
 android {
     namespace = "com.jinkyu.tv"
     compileSdk = 34
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 28
     }
