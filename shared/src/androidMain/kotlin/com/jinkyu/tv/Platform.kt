@@ -5,8 +5,6 @@ import org.koin.dsl.module
 
 actual fun platformModule() = module {
     factory { param ->
-        MainViewModel(
-            coroutineScope = param.get()
-        )
+        MainViewModel()
     }
 }

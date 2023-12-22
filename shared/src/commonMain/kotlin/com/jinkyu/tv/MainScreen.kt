@@ -9,11 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.jinkyu.tv.presentation.MainViewModel
 import com.jinkyu.tv.ui.ChatList
+import org.koin.compose.koinInject
 
 @Composable
-fun MainScreen(
-    mainViewModel: MainViewModel
-) {
+fun MainScreen() {
+
+    val mainViewModel = MainViewModel() //koinInject<MainViewModel>()
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background

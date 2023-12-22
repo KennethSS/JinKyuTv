@@ -9,15 +9,17 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainViewModel(
-    private val coroutineScope: CoroutineScope?
+    //private val coroutineScope: CoroutineScope?
 ) {
 
-    private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
+    //private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
 
     val chatList = mutableStateListOf<Chat>()
 
     init {
-        coroutineScope?.launch {
+        chatList.add(Chat(nicknames.random(), messages.random()))
+
+        /*coroutineScope?.launch {
             repeat(10) {
                 delay(1000L)
                 val chatMessageCount = Random(3)
@@ -27,7 +29,7 @@ class MainViewModel(
                     chatList.add(chat)
                 }
             }
-        }
+        }*/
     }
 
 
