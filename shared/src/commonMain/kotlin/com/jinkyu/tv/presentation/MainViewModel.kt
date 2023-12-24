@@ -38,6 +38,8 @@ class MainViewModel(
 
     fun onLoginClicked() {}
 
+    fun onBackButtonClicked() {}
+
 
     companion object {
         val nicknames = listOf("Kenneth", "Kevin", "Michael", "Son")

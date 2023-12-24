@@ -3,9 +3,7 @@ package com.jinkyu.tv
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jinkyu.tv.presentation.MainViewModel
+import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.JinKyuButton
 import com.jinkyu.tv.ui.JinKyuTextField
 
@@ -44,14 +43,14 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
+        Divider(height = 20)
         Text(
             text = "JinKyu Tv",
             fontStyle = FontStyle.Italic,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         )
-        Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
+        Divider(height = 24)
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
             text = id,
@@ -64,13 +63,13 @@ fun LoginScreen(
             onValueChange = { password = it },
             label = "비밀번호"
         )
-        Spacer(modifier = Modifier.fillMaxWidth().height(12.dp))
+        Divider(height = 12)
         JinKyuButton(
             buttonLabel = "로그인",
             enable = loginEnable,
             onClicked = { mainViewModel.onLoginClicked() }
         )
-        Spacer(modifier = Modifier.fillMaxWidth().height(12.dp))
+        Divider(height = 12)
         JinKyuButton(
             buttonLabel = "회원가입",
             enable = true,

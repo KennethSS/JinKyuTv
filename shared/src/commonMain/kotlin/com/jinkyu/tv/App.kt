@@ -10,13 +10,12 @@ import org.koin.compose.KoinApplication
 
 @Composable
 fun App(platform: String) {
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
 //        MainScreen()
-//        RegisterScreen(modifier = Modifier.fillMaxSize())
-        LoginScreen(modifier = Modifier.fillMaxSize())
+        RegisterScreen(modifier = Modifier.fillMaxSize())
+//        LoginScreen(modifier = Modifier.fillMaxSize())
     }
 }
