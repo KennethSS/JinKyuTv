@@ -16,9 +16,17 @@ kotlin {
             }
         }
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "JinKyuTv"
+            isStatic = true
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -34,14 +42,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(libs.compose.util)
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
             }
         }
         val androidMain by getting {
@@ -49,6 +56,14 @@ kotlin {
                 implementation(libs.exoplayer)
                 implementation(libs.exoplayer.dash)
                 implementation(libs.exoplayer.ui)
+                implementation(libs.koin.androidx.compose)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                api(compose.runtime)
+                api(compose.foundation)
+                api(compose.material)
             }
         }
     }

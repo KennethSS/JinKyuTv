@@ -5,23 +5,18 @@ import AVKit
 struct ContentView: View {
     @State var player = AVPlayer()
     
+    let greet = Greeting().greeting()
+    
     var body: some View {
-        VideoPlayer(
-            player: player
-        )
-        .frame(height: 400)
-        .onAppear {
-            player = AVPlayer(url:  URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
-        }
-        
-		Text("gg")
-        
+        ComposeLayer()
+        Text(greet)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+
+struct ComposeLayer: View {
+    var body: some View {
+        ComposeViewControllerToSwiftUi()
+            .ignoresSafeArea(.keyboard)
+    }
 }
-    
