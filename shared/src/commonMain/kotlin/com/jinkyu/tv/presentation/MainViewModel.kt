@@ -32,7 +32,11 @@ class MainViewModel(
         }*/
     }
 
+    fun onNavigateToRegisterClicked() {}
+
     fun onRegisterClicked() {}
+
+    fun onLoginClicked() {}
 
 
     companion object {

@@ -16,6 +16,7 @@ fun App(platform: String) {
         contentAlignment = Alignment.Center
     ) {
 //        MainScreen()
-        RegisterScreen(modifier = Modifier.fillMaxSize())
+//        RegisterScreen(modifier = Modifier.fillMaxSize())
+        LoginScreen(modifier = Modifier.fillMaxSize())
     }
 }
