@@ -32,6 +32,8 @@ class MainViewModel(
         }*/
     }
 
+    fun onRegisterClicked() {}
+
 
     companion object {
         val nicknames = listOf("Kenneth", "Kevin", "Michael", "Son")
