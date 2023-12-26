@@ -13,12 +13,6 @@ class RegisterUseCase(
         email: String,
         password: String
     ): Resource<PostRegisterResponse> {
-        return try {
-            val result = client.register(nickName, id, email, password)
-            Resource.Success(result)
-        } catch (exception: Exception) {
-            exception.printStackTrace()
-            Resource.Error(exception)
-        }
+        return client.register(nickName, id, email, password)
     }
 }

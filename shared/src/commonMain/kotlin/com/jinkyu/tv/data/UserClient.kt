@@ -1,6 +1,8 @@
 package com.jinkyu.tv.data
 
+import com.jinkyu.tv.data.model.response.PostLoginResponse
 import com.jinkyu.tv.data.model.response.PostRegisterResponse
+import com.jinkyu.tv.domain.util.Resource
 
 
 interface UserClient {
@@ -9,5 +11,10 @@ interface UserClient {
         id: String,
         email: String,
         password: String
-    ): PostRegisterResponse
+    ): Resource<PostRegisterResponse>
+
+    suspend fun login(
+        id: String,
+        password: String
+    ): Resource<PostLoginResponse>
 }

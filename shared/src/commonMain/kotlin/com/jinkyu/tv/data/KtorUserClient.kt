@@ -1,8 +1,11 @@
 package com.jinkyu.tv.data
 
 import com.jinkyu.tv.data.model.BaseResponse
+import com.jinkyu.tv.data.model.request.PostLoginRequest
 import com.jinkyu.tv.data.model.request.PostRegisterRequest
+import com.jinkyu.tv.data.model.response.PostLoginResponse
 import com.jinkyu.tv.data.model.response.PostRegisterResponse
+import com.jinkyu.tv.domain.util.Resource
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -17,18 +20,46 @@ class KtorUserClient(
         id: String,
         email: String,
         password: String
-    ): PostRegisterResponse {
+    ): Resource<PostRegisterResponse> {
         val request = PostRegisterRequest(nickName, id, email, password)
-        val result = try {
+        runCatching {
             httpClient.post {
-                url(NetworkConstants.BASE_URL + "/app/users")
+                url(NetworkConstants.BASE_URL + "/users")
                 contentType(ContentType.Application.Json)
                 setBody(body = request)
             }
-        } catch (exception: Exception) {
-            throw exception
+        }.onSuccess {
+            val result = it.body<BaseResponse<PostRegisterResponse>>()
+            return when (result.isSuccess) {
+                true -> Resource.Success(result.result)
+                false -> Resource.Error(Throwable(message = result.message))
+            }
+        }.onFailure {
+            return Resource.Error(it)
         }
+        return Resource.Error(Throwable("네트워크 연동에 실패했습니다."))
+    }
 
-        return result.body<BaseResponse<PostRegisterResponse>>().result
+    override suspend fun login(
+        id: String,
+        password: String
+    ): Resource<PostLoginResponse> {
+        val request = PostLoginRequest(id, password)
+        runCatching {
+            httpClient.post {
+                url(NetworkConstants.BASE_URL + "/users/logIn")
+                contentType(ContentType.Application.Json)
+                setBody(body = request)
+            }
+        }.onSuccess {
+            val result = it.body<BaseResponse<PostLoginResponse>>()
+            return when (result.isSuccess) {
+                true -> Resource.Success(result.result)
+                false -> Resource.Error(Throwable(message = result.message))
+            }
+        }.onFailure {
+            return Resource.Error(it)
+        }
+        return Resource.Error(Throwable("네트워크 연동에 실패했습니다."))
     }
 }
