@@ -49,6 +49,9 @@ kotlin {
                 implementation(libs.compose.util)
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.serialization)
+                implementation(libs.ktor.serialization.json)
             }
         }
         val androidMain by getting {
@@ -57,6 +60,7 @@ kotlin {
                 implementation(libs.exoplayer.dash)
                 implementation(libs.exoplayer.ui)
                 implementation(libs.koin.androidx.compose)
+                implementation(libs.ktor.android)
             }
         }
         val iosMain by getting {
@@ -64,6 +68,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api(libs.ktor.ios)
             }
         }
     }
