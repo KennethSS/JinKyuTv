@@ -1,4 +1,4 @@
-package com.jinkyu.tv.ui
+package com.jinkyu.tv.ui.system
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun JinKyuButton(
+fun Button(
     buttonLabel: String,
     enable: Boolean,
     onClicked: () -> Unit

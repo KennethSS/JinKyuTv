@@ -1,4 +1,4 @@
-package com.jinkyu.tv.ui
+package com.jinkyu.tv.ui.system
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
