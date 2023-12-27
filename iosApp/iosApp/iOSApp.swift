@@ -3,7 +3,7 @@ import shared
 
 @main
 struct iOSApp: App {
-    
+
     @State var navigation = NavigationPath()
 
     init() {
@@ -21,7 +21,7 @@ struct iOSApp: App {
                     case.Main: ComposeViewControllerToSwiftUi()
                     case.Sign: ComposeViewControllerToSwiftUi()
                     }
-                    
+
                 }
             }
             .ignoresSafeArea(.keyboard)

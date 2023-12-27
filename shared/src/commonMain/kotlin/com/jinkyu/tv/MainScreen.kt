@@ -13,9 +13,12 @@ import com.jinkyu.tv.ui.ChatList
 import org.koin.compose.koinInject
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    playerViewModel: PlayerViewModel = koinInject()
+) {
 
     val mainViewModel = MainViewModel()
+
 
     Surface(
         modifier = Modifier.fillMaxSize(),
