@@ -32,14 +32,6 @@ class MainViewModel(
         }*/
     }
 
-    fun onNavigateToRegisterClicked() {}
-
-    fun onRegisterClicked() {}
-
-    fun onLoginClicked() {}
-
-    fun onBackButtonClicked() {}
-
 
     companion object {
         val nicknames = listOf("Kenneth", "Kevin", "Michael", "Son")

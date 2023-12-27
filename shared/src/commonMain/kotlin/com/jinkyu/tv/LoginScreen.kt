@@ -20,23 +20,27 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jinkyu.tv.presentation.MainViewModel
+import com.jinkyu.tv.domain.user.UserInput
+import com.jinkyu.tv.presentation.LoginViewModel
+import com.jinkyu.tv.ui.AppNameLabel
 import com.jinkyu.tv.ui.Divider
+import com.jinkyu.tv.ui.EmailLabel
 import com.jinkyu.tv.ui.JinKyuButton
 import com.jinkyu.tv.ui.JinKyuTextField
+import com.jinkyu.tv.ui.LoginLabel
+import com.jinkyu.tv.ui.PasswordLabel
+import com.jinkyu.tv.ui.RegisterLabel
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier
 ) {
 
-    val mainViewModel = MainViewModel() //koinInject<MainViewModel>()
+    val viewModel = LoginViewModel() //koinInject<MainViewModel>()
 
-    var id by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-    val loginEnable by remember {
-        derivedStateOf { id.isNotBlank() && password.isNotBlank() }
-    }
+    val email by rememberSaveable { derivedStateOf { viewModel.email.value } }
+    val password by rememberSaveable { derivedStateOf { viewModel.password.value } }
+    val loginEnable by rememberSaveable { derivedStateOf { viewModel.loginEnable.value } }
 
     Column(
         modifier = modifier.background(Color.White).padding(horizontal = 16.dp),
@@ -45,7 +49,7 @@ fun LoginScreen(
     ) {
         Divider(height = 20)
         Text(
-            text = "JinKyu Tv",
+            text = AppNameLabel,
             fontStyle = FontStyle.Italic,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
@@ -53,27 +57,27 @@ fun LoginScreen(
         Divider(height = 24)
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
-            text = id,
-            onValueChange = { id = it },
-            label = "아이디"
+            text = email,
+            onValueChange = { viewModel.onUserInput(type = UserInput.EMAIL, input = it) },
+            label = EmailLabel
         )
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
             text = password,
-            onValueChange = { password = it },
-            label = "비밀번호"
+            onValueChange = { viewModel.onUserInput(type = UserInput.PASSWORD, input = it) },
+            label = PasswordLabel
         )
         Divider(height = 12)
         JinKyuButton(
-            buttonLabel = "로그인",
+            buttonLabel = LoginLabel,
             enable = loginEnable,
-            onClicked = { mainViewModel.onLoginClicked() }
+            onClicked = { viewModel.onLoginClicked() }
         )
         Divider(height = 12)
         JinKyuButton(
-            buttonLabel = "회원가입",
+            buttonLabel = RegisterLabel,
             enable = true,
-            onClicked = { mainViewModel.onNavigateToRegisterClicked() }
+            onClicked = { viewModel.onCreateUserClicked() }
         )
     }
 }

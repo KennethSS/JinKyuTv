@@ -8,10 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,11 +16,16 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jinkyu.tv.presentation.MainViewModel
+import com.jinkyu.tv.presentation.RegisterViewModel
+import com.jinkyu.tv.presentation.UserInput
+import com.jinkyu.tv.ui.AppNameLabel
 import com.jinkyu.tv.ui.Divider
+import com.jinkyu.tv.ui.EmailLabel
 import com.jinkyu.tv.ui.JinKyuButton
 import com.jinkyu.tv.ui.JinKyuTextField
 import com.jinkyu.tv.ui.JinKyuTopBar
+import com.jinkyu.tv.ui.NicknameLabel
+import com.jinkyu.tv.ui.PasswordLabel
 import com.jinkyu.tv.ui.SpacerWeight
 
 @Composable
@@ -31,17 +33,12 @@ fun RegisterScreen(
     modifier: Modifier = Modifier
 ) {
 
-    val mainViewModel = MainViewModel() //koinInject<MainViewModel>()
+    val viewModel = RegisterViewModel() //koinInject<MainViewModel>()
 
     val screenLabel = "회원가입"
-
-    var id by rememberSaveable { mutableStateOf("") }
-    var email by rememberSaveable { mutableStateOf("") }
-    var nickName by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-    val registerEnable by remember {
-        derivedStateOf { id.isNotBlank() && email.isNotBlank() && nickName.isNotBlank() && password.isNotBlank() }
-    }
+    val email by rememberSaveable { derivedStateOf { viewModel.email.value } }
+    val nickName by rememberSaveable { derivedStateOf { viewModel.nickName.value } }
+    val password by rememberSaveable { derivedStateOf { viewModel.password.value } }
 
     Column(
         modifier = modifier.background(Color.White).padding(horizontal = 16.dp),
@@ -49,11 +46,11 @@ fun RegisterScreen(
     ) {
         JinKyuTopBar(
             label = screenLabel,
-            onBackButtonClicked = { mainViewModel.onBackButtonClicked() }
+            onBackButtonClicked = { viewModel.onBackButtonClicked() }
         )
         SpacerWeight()
         Text(
-            text = "JinKyu Tv",
+            text = AppNameLabel,
             fontStyle = FontStyle.Italic,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
@@ -62,32 +59,26 @@ fun RegisterScreen(
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
             text = nickName,
-            onValueChange = { nickName = it },
-            label = "닉네임"
-        )
-        JinKyuTextField(
-            modifier = Modifier.fillMaxWidth(),
-            text = id,
-            onValueChange = { id = it },
-            label = "아이디"
+            onValueChange = { viewModel.onUserInput(type = UserInput.NICKNAME, input = it) },
+            label = NicknameLabel
         )
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
             text = email,
-            onValueChange = { email = it },
-            label = "이메일"
+            onValueChange = { viewModel.onUserInput(type = UserInput.EMAIL, input = it) },
+            label = EmailLabel
         )
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
             text = password,
-            onValueChange = { password = it },
-            label = "비밀번호"
+            onValueChange = { viewModel.onUserInput(type = UserInput.PASSWORD, input = it) },
+            label = PasswordLabel
         )
         Divider(height = 12)
         JinKyuButton(
             buttonLabel = screenLabel,
-            enable = registerEnable,
-            onClicked = { mainViewModel.onRegisterClicked() }
+            enable = viewModel.registerEnable.value,
+            onClicked = { viewModel.onCreateUserClicked() }
         )
         Divider(height = 48)
         SpacerWeight()
