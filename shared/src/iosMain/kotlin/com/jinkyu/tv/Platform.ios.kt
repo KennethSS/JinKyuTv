@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitView
 import com.jinkyu.tv.presentation.MainViewModel
 import com.jinkyu.tv.presentation.player.PlayerViewModel
-import com.jinkyu.tv.presentation.splash.SplashViewModel
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.koin.core.module.dsl.factoryOf
@@ -32,6 +31,7 @@ actual fun platformModule() = module {
     factory {
         SplashViewModel(null)
     }
+    factoryOf(::PlayerViewModel)
     factoryOf(::PlayerViewModel)
 }
 

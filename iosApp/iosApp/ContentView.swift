@@ -5,7 +5,6 @@ import AVKit
 struct ContentView: View {
     @State var player = AVPlayer()
 
-
     var body: some View {
         ComposeLayer()
     }
