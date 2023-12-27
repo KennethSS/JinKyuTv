@@ -55,11 +55,11 @@ fun RegisterScreen(
             fontSize = 24.sp
         )
         Divider(height = 24)
-        OutlinedTextField(
+        JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = nickName,
+            text = nickName,
             onValueChange = { viewModel.onUserInput(type = UserInput.NICKNAME, input = it) },
-            label = { Text(NicknameLabel) }
+            label = NicknameLabel
         )
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
