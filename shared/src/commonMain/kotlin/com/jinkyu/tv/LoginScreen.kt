@@ -8,10 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,11 +21,11 @@ import com.jinkyu.tv.presentation.LoginViewModel
 import com.jinkyu.tv.ui.AppNameLabel
 import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.EmailLabel
-import com.jinkyu.tv.ui.system.Button
-import com.jinkyu.tv.ui.system.JinKyuTextField
 import com.jinkyu.tv.ui.LoginLabel
 import com.jinkyu.tv.ui.PasswordLabel
 import com.jinkyu.tv.ui.RegisterLabel
+import com.jinkyu.tv.ui.system.Button
+import com.jinkyu.tv.ui.system.JinKyuTextField
 
 @Composable
 fun LoginScreen(

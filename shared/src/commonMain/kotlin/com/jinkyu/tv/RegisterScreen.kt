@@ -23,6 +23,7 @@ import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.EmailLabel
 import com.jinkyu.tv.ui.NicknameLabel
 import com.jinkyu.tv.ui.PasswordLabel
+import com.jinkyu.tv.ui.RegisterLabel
 import com.jinkyu.tv.ui.SpacerWeight
 import com.jinkyu.tv.ui.system.Button
 import com.jinkyu.tv.ui.system.JinKyuTextField
@@ -33,7 +34,6 @@ fun RegisterScreen(
     modifier: Modifier = Modifier,
     viewModel: RegisterViewModel
 ) {
-    val screenLabel = "회원가입"
     val nickName by viewModel.nickName.collectAsState()
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
@@ -44,7 +44,7 @@ fun RegisterScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         JinKyuTopBar(
-            label = screenLabel,
+            label = RegisterLabel,
             onBackButtonClicked = { viewModel.onBackButtonClicked() }
         )
         SpacerWeight()
@@ -75,7 +75,7 @@ fun RegisterScreen(
         )
         Divider(height = 12)
         Button(
-            buttonLabel = screenLabel,
+            buttonLabel = RegisterLabel,
             enable = registerEnable,
             onClicked = { viewModel.onCreateUserClicked() }
         )
