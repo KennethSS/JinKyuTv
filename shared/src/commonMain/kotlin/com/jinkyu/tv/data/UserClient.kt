@@ -4,7 +4,6 @@ import com.jinkyu.tv.data.model.response.PostLoginResponse
 import com.jinkyu.tv.data.model.response.PostRegisterResponse
 import com.jinkyu.tv.domain.util.Resource
 
-
 interface UserClient {
     suspend fun register(
         nickName: String,
