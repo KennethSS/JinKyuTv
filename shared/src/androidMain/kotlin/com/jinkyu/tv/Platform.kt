@@ -1,14 +1,17 @@
 package com.jinkyu.tv
 
-import com.jinkyu.tv.presentation.LoginViewModel
 import com.jinkyu.tv.presentation.MainViewModel
-import com.jinkyu.tv.presentation.RegisterViewModel
+import com.jinkyu.tv.presentation.player.PlayerViewModel
+import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
 actual fun platformModule() = module {
     factory { param ->
         MainViewModel()
-        RegisterViewModel()
-        LoginViewModel()
     }
+    /*factory { param ->
+        ExoPlayer.Builder(androidContext())
+            .build()
+    }*/
+    factoryOf(::PlayerViewModel)
 }
