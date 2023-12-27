@@ -17,11 +17,10 @@ class KtorUserClient(
 
     override suspend fun register(
         nickName: String,
-        id: String,
         email: String,
         password: String
     ): Resource<PostRegisterResponse> {
-        val request = PostRegisterRequest(nickName, id, email, password)
+        val request = PostRegisterRequest(nickName = nickName, id = email, email = email, password = password)
         runCatching {
             httpClient.post {
                 url(NetworkConstants.BASE_URL + "/users")
@@ -41,10 +40,10 @@ class KtorUserClient(
     }
 
     override suspend fun login(
-        id: String,
+        email: String,
         password: String
     ): Resource<PostLoginResponse> {
-        val request = PostLoginRequest(id, password)
+        val request = PostLoginRequest(id = email, password = password)
         runCatching {
             httpClient.post {
                 url(NetworkConstants.BASE_URL + "/users/logIn")

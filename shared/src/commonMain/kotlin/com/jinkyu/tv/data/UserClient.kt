@@ -8,13 +8,12 @@ import com.jinkyu.tv.domain.util.Resource
 interface UserClient {
     suspend fun register(
         nickName: String,
-        id: String,
         email: String,
         password: String
     ): Resource<PostRegisterResponse>
 
     suspend fun login(
-        id: String,
+        email: String,
         password: String
     ): Resource<PostLoginResponse>
 }

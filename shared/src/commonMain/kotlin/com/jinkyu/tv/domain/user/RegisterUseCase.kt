@@ -13,6 +13,6 @@ class RegisterUseCase(
         email: String,
         password: String
     ): Resource<PostRegisterResponse> {
-        return client.register(nickName, id, email, password)
+        return client.register(nickName, email, password)
     }
 }
