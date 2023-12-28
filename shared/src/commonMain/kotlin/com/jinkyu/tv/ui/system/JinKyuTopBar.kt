@@ -30,7 +30,7 @@ fun JinKyuTopBar(
     onOtherButtonClicked: () -> Unit = {},
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 18.dp),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 18.dp, horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

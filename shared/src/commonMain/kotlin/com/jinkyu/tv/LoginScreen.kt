@@ -43,7 +43,6 @@ fun LoginScreen(
     Column(
         modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
     ) {
-        Divider(height = 42)
         AppLogoLabel()
         WelcomeLabel(
             firstLabel = LoginMessage1,
@@ -69,7 +68,6 @@ fun LoginScreen(
             enable = loginEnable,
             onClicked = { viewModel.onLoginClicked() }
         )
-        Divider(height = 24)
         AlreadyTextButton(
             message = HaveNotAccount,
             buttonLabel = SignUpLabel,

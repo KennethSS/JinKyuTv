@@ -3,6 +3,7 @@ package com.jinkyu.tv.ui.system
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -56,27 +57,31 @@ fun AlreadyTextButton(
     buttonLabel: String,
     onButtonClicked: () -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onButtonClicked() },
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(top = 24.dp)
     ) {
-        Text(
-            text = message,
-            fontSize = 14.sp,
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.SemiBold,
-            color = ColorGray,
-        )
-        Text(
-            modifier = Modifier.padding(4.dp),
-            text = buttonLabel,
-            fontSize = 14.sp,
-            fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.SemiBold,
-            color = ColorBlue,
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onButtonClicked() },
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = message,
+                fontSize = 14.sp,
+                fontStyle = FontStyle.Normal,
+                fontWeight = FontWeight.SemiBold,
+                color = ColorGray,
+            )
+            Text(
+                modifier = Modifier.padding(4.dp),
+                text = buttonLabel,
+                fontSize = 14.sp,
+                fontStyle = FontStyle.Normal,
+                fontWeight = FontWeight.SemiBold,
+                color = ColorBlue,
+            )
+        }
     }
 }

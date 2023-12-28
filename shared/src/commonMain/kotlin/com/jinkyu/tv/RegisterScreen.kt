@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -44,51 +45,56 @@ fun RegisterScreen(
     val password by viewModel.password.collectAsState()
     val registerEnable by viewModel.registerEnable.collectAsState()
 
-    Column(
-        modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
+    Scaffold(
+        modifier = modifier.background(Color.White),
+        topBar = {
+            JinKyuTopBar(
+                label = SignUpLabel,
+                onBackButtonClicked = { viewModel.onBackButtonClicked() }
+            )
+        }
     ) {
-        JinKyuTopBar(
-            label = SignUpLabel,
-            onBackButtonClicked = { viewModel.onBackButtonClicked() }
-        )
-        AppLogoLabel()
-        WelcomeLabel(
-            firstLabel = SignUpMessage1,
-            secondLabel = SignUpMessage2
-        )
-        Label(label = NicknameLabel)
-        JinKyuTextField(
-            modifier = Modifier.fillMaxWidth(),
-            text = nickName,
-            onValueChange = { viewModel.onUserInput(type = UserInput.NICKNAME, input = it) },
-            hint = NicknameHint
-        )
-        Label(label = EmailLabel)
-        JinKyuTextField(
-            modifier = Modifier.fillMaxWidth(),
-            text = email,
-            onValueChange = { viewModel.onUserInput(type = UserInput.EMAIL, input = it) },
-            hint = EmailHint
-        )
-        Label(label = PasswordLabel)
-        JinKyuPasswordTextField(
-            modifier = Modifier.fillMaxWidth(),
-            text = password,
-            onValueChange = { viewModel.onUserInput(type = UserInput.PASSWORD, input = it) },
-            hint = PasswordHint
-        )
-        SpacerWeight()
-        Button(
-            buttonLabel = SignUpLabel,
-            enable = registerEnable,
-            onClicked = { viewModel.onRegisterClicked() }
-        )
-        Divider(height = 24)
-        AlreadyTextButton(
-            message = AlreadyHaveAccount,
-            buttonLabel = LoginLabel,
-            onButtonClicked = {}
-        )
-        Divider(height = 38)
+        Column(
+            modifier = modifier.background(Color.White).padding(it).padding(horizontal = 26.dp)
+        ) {
+            AppLogoLabel()
+            WelcomeLabel(
+                firstLabel = SignUpMessage1,
+                secondLabel = SignUpMessage2
+            )
+            Label(label = NicknameLabel)
+            JinKyuTextField(
+                modifier = Modifier.fillMaxWidth(),
+                text = nickName,
+                onValueChange = { viewModel.onUserInput(type = UserInput.NICKNAME, input = it) },
+                hint = NicknameHint
+            )
+            Label(label = EmailLabel)
+            JinKyuTextField(
+                modifier = Modifier.fillMaxWidth(),
+                text = email,
+                onValueChange = { viewModel.onUserInput(type = UserInput.EMAIL, input = it) },
+                hint = EmailHint
+            )
+            Label(label = PasswordLabel)
+            JinKyuPasswordTextField(
+                modifier = Modifier.fillMaxWidth(),
+                text = password,
+                onValueChange = { viewModel.onUserInput(type = UserInput.PASSWORD, input = it) },
+                hint = PasswordHint
+            )
+            SpacerWeight()
+            Button(
+                buttonLabel = SignUpLabel,
+                enable = registerEnable,
+                onClicked = { viewModel.onRegisterClicked() }
+            )
+            AlreadyTextButton(
+                message = AlreadyHaveAccount,
+                buttonLabel = LoginLabel,
+                onButtonClicked = {}
+            )
+            Divider(height = 38)
+        }
     }
 }
