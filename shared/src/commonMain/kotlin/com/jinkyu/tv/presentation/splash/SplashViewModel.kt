@@ -16,7 +16,6 @@ class SplashViewModel(
     private val _effect = MutableSharedFlow<SplashEffect>()
     val effect = _effect.asSharedFlow()
 
-
     init {
         viewModelScope.launch {
             delay(1000L)
