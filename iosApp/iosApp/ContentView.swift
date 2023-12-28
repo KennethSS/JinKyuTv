@@ -5,11 +5,8 @@ import AVKit
 struct ContentView: View {
     @State var player = AVPlayer()
     
-    let greet = Greeting().greeting()
-    
     var body: some View {
         ComposeLayer()
-        Text(greet)
     }
 }
 
