@@ -19,7 +19,6 @@ fun MainScreen(
 
     val mainViewModel = MainViewModel()
 
-
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
