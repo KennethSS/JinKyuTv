@@ -16,9 +16,12 @@ import com.jinkyu.tv.ui.AppNameLabel
 import com.jinkyu.tv.ui.Divider
 
 @Composable
-fun AppLogoLabel() {
+fun AppLogoLabel(
+    hasTopBar: Boolean = false
+) {
+    val modifier = if (hasTopBar) Modifier.padding(vertical = 42.dp) else Modifier.padding(bottom = 42.dp, top = 106.dp)
     Text(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 42.dp),
+        modifier = modifier.fillMaxWidth(),
         text = AppNameLabel,
         fontStyle = FontStyle.Italic,
         fontWeight = FontWeight.Bold,

@@ -57,7 +57,7 @@ fun RegisterScreen(
         Column(
             modifier = modifier.background(Color.White).padding(it).padding(horizontal = 26.dp)
         ) {
-            AppLogoLabel()
+            AppLogoLabel(true)
             WelcomeLabel(
                 firstLabel = SignUpMessage1,
                 secondLabel = SignUpMessage2
