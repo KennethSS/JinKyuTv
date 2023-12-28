@@ -27,7 +27,6 @@ fun App() {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            SplashScreen()
             MainScreen()
             //RegisterScreen(modifier = Modifier.fillMaxSize(), viewModel = registerViewModel)
             //LoginScreen(modifier = Modifier.fillMaxSize(), viewModel = loginViewModel)
