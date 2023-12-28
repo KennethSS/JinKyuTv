@@ -21,7 +21,7 @@ import com.jinkyu.tv.ui.NicknameHint
 import com.jinkyu.tv.ui.NicknameLabel
 import com.jinkyu.tv.ui.PasswordHint
 import com.jinkyu.tv.ui.PasswordLabel
-import com.jinkyu.tv.ui.RegisterLabel
+import com.jinkyu.tv.ui.SignUpLabel
 import com.jinkyu.tv.ui.SignUpMessage1
 import com.jinkyu.tv.ui.SignUpMessage2
 import com.jinkyu.tv.ui.SpacerWeight
@@ -48,7 +48,7 @@ fun RegisterScreen(
         modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
     ) {
         JinKyuTopBar(
-            label = RegisterLabel,
+            label = SignUpLabel,
             onBackButtonClicked = { viewModel.onBackButtonClicked() }
         )
         Divider(height = 42)
@@ -81,7 +81,7 @@ fun RegisterScreen(
         )
         SpacerWeight()
         Button(
-            buttonLabel = RegisterLabel,
+            buttonLabel = SignUpLabel,
             enable = registerEnable,
             onClicked = { viewModel.onCreateUserClicked() }
         )

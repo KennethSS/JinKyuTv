@@ -1,31 +1,35 @@
 package com.jinkyu.tv
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.jinkyu.tv.domain.user.UserInput
 import com.jinkyu.tv.presentation.LoginViewModel
-import com.jinkyu.tv.ui.AppNameLabel
 import com.jinkyu.tv.ui.Divider
+import com.jinkyu.tv.ui.EmailHint
 import com.jinkyu.tv.ui.EmailLabel
+import com.jinkyu.tv.ui.HaveNotAccount
 import com.jinkyu.tv.ui.LoginLabel
+import com.jinkyu.tv.ui.LoginMessage1
+import com.jinkyu.tv.ui.LoginMessage2
+import com.jinkyu.tv.ui.PasswordHint
 import com.jinkyu.tv.ui.PasswordLabel
-import com.jinkyu.tv.ui.RegisterLabel
+import com.jinkyu.tv.ui.SignUpLabel
+import com.jinkyu.tv.ui.SpacerWeight
+import com.jinkyu.tv.ui.system.AlreadyTextButton
+import com.jinkyu.tv.ui.system.AppLogoLabel
 import com.jinkyu.tv.ui.system.Button
+import com.jinkyu.tv.ui.system.JinKyuPasswordTextField
 import com.jinkyu.tv.ui.system.JinKyuTextField
+import com.jinkyu.tv.ui.system.Label
+import com.jinkyu.tv.ui.system.WelcomeLabel
 
 @Composable
 fun LoginScreen(
@@ -37,41 +41,41 @@ fun LoginScreen(
     val loginEnable by viewModel.loginEnable.collectAsState()
 
     Column(
-        modifier = modifier.background(Color.White).padding(horizontal = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
     ) {
-        Divider(height = 20)
-        Text(
-            text = AppNameLabel,
-            fontStyle = FontStyle.Italic,
-            fontWeight = FontWeight.Bold,
-            fontSize = 24.sp
+        Divider(height = 84)
+        AppLogoLabel()
+        Divider(height = 40)
+        WelcomeLabel(
+            firstLabel = LoginMessage1,
+            secondLabel = LoginMessage2
         )
-        Divider(height = 24)
+        Label(label = EmailLabel)
         JinKyuTextField(
             modifier = Modifier.fillMaxWidth(),
             text = email,
             onValueChange = { viewModel.onUserInput(type = UserInput.EMAIL, input = it) },
-            label = EmailLabel
+            hint = EmailHint
         )
-        JinKyuTextField(
+        Label(label = PasswordLabel)
+        JinKyuPasswordTextField(
             modifier = Modifier.fillMaxWidth(),
             text = password,
             onValueChange = { viewModel.onUserInput(type = UserInput.PASSWORD, input = it) },
-            label = PasswordLabel
+            hint = PasswordHint
         )
-        Divider(height = 12)
+        SpacerWeight()
         Button(
             buttonLabel = LoginLabel,
             enable = loginEnable,
             onClicked = { viewModel.onLoginClicked() }
         )
-        Divider(height = 12)
-        Button(
-            buttonLabel = RegisterLabel,
-            enable = true,
-            onClicked = { viewModel.onCreateUserClicked() }
+        Divider(height = 24)
+        AlreadyTextButton(
+            message = HaveNotAccount,
+            buttonLabel = SignUpLabel,
+            onButtonClicked = { viewModel.onSignUpClicked() }
         )
+        Divider(height = 38)
     }
 }
