@@ -51,9 +51,7 @@ fun RegisterScreen(
             label = SignUpLabel,
             onBackButtonClicked = { viewModel.onBackButtonClicked() }
         )
-        Divider(height = 42)
         AppLogoLabel()
-        Divider(height = 40)
         WelcomeLabel(
             firstLabel = SignUpMessage1,
             secondLabel = SignUpMessage2
@@ -83,7 +81,7 @@ fun RegisterScreen(
         Button(
             buttonLabel = SignUpLabel,
             enable = registerEnable,
-            onClicked = { viewModel.onCreateUserClicked() }
+            onClicked = { viewModel.onRegisterClicked() }
         )
         Divider(height = 24)
         AlreadyTextButton(

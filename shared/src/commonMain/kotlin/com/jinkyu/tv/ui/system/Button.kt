@@ -36,7 +36,7 @@ fun Button(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(if (enable) Color(0xFF351A96) else Color.LightGray)
+                .background(if (enable) ColorBlue else Color.LightGray)
                 .clip(shape = RoundedCornerShape(12.dp))
                 .clickable { onClicked() }
                 .padding(vertical = 12.dp, horizontal = 24.dp),
@@ -68,7 +68,7 @@ fun AlreadyTextButton(
             fontSize = 14.sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.SemiBold,
-            color = Color(0xFF999EA1),
+            color = ColorGray,
         )
         Text(
             modifier = Modifier.padding(4.dp),
@@ -76,7 +76,7 @@ fun AlreadyTextButton(
             fontSize = 14.sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.SemiBold,
-            color = Color(0xFF160062),
+            color = ColorBlue,
         )
     }
 }

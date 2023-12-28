@@ -5,12 +5,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,83 +33,34 @@ fun JinKyuTextField(
     modifier: Modifier = Modifier,
     text: String,
     onValueChange: (String) -> Unit,
-    label: String = "",
     hint: String = "",
     hasSendButton: Boolean = false,
     onSendClicked: () -> Unit = {}
 ) {
-    val hasLabel = label.isNotBlank()
-    val hasHint = hint.isNotBlank()
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        when {
-            hasLabel -> {
-                OutlinedTextField(
-                    modifier = Modifier.weight(1f),
-                    value = text,
-                    onValueChange = onValueChange,
-                    label = {
-                        Text(
-                            text = label,
-                            fontSize = 14.sp,
-                            fontStyle = FontStyle.Normal,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF9E9E9E),
-                        )
-                    },
+        OutlinedTextField(
+            modifier = Modifier.weight(1f),
+            value = text,
+            onValueChange = onValueChange,
+            colors = TextFieldDefaults.colors(
+                focusedIndicatorColor = ColorBlue,
+                cursorColor = ColorBlue,
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color.White
+            ),
+            placeholder = {
+                Text(
+                    text = hint,
+                    fontSize = 14.sp,
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color(0xFF9E9E9E),
                 )
-            }
-            hasHint -> {
-                OutlinedTextField(
-                    modifier = Modifier.weight(1f),
-                    value = text,
-                    onValueChange = onValueChange,
-                    placeholder = {
-                        Text(
-                            text = hint,
-                            fontSize = 14.sp,
-                            fontStyle = FontStyle.Normal,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF9E9E9E),
-                        )
-                    },
-                )
-            }
-            hasLabel && hasHint -> {
-                OutlinedTextField(
-                    modifier = Modifier.weight(1f),
-                    value = text,
-                    onValueChange = onValueChange,
-                    label = {
-                        Text(
-                            text = label,
-                            fontSize = 14.sp,
-                            fontStyle = FontStyle.Normal,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF9E9E9E),
-                        )
-                    },
-                )
-            }
-            else -> {
-                OutlinedTextField(
-                    modifier = Modifier.weight(1f),
-                    value = text,
-                    onValueChange = onValueChange,
-                    placeholder = {
-                        Text(
-                            text = label,
-                            fontSize = 14.sp,
-                            fontStyle = FontStyle.Normal,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF9E9E9E),
-                        )
-                    },
-                )
-            }
-        }
+            },
+        )
         if (hasSendButton) {
             Divider(width = 12)
             Icon(
@@ -134,6 +86,12 @@ fun JinKyuPasswordTextField(
         value = text,
         onValueChange = onValueChange,
         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = ColorBlue,
+            cursorColor = ColorBlue,
+            focusedContainerColor = Color.White,
+            unfocusedContainerColor = Color.White
+        ),
         placeholder = {
             Text(
                 text = hint,

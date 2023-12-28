@@ -18,7 +18,7 @@ import com.jinkyu.tv.ui.Divider
 @Composable
 fun AppLogoLabel() {
     Text(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 42.dp),
         text = AppNameLabel,
         fontStyle = FontStyle.Italic,
         fontWeight = FontWeight.Bold,
@@ -47,7 +47,7 @@ fun WelcomeLabel(
             fontSize = 14.sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.SemiBold,
-            color = Color(0xFF999EA1),
+            color = ColorGray,
         )
         Divider(height = 24)
     }

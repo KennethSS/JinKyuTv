@@ -38,5 +38,6 @@ class LoginViewModel(
     }
 
     fun onSignUpClicked() {}
+
     fun onLoginClicked() {}
 }

@@ -40,7 +40,7 @@ class RegisterViewModel(
         }
     }
 
-    fun onCreateUserClicked() {}
+    fun onRegisterClicked() {}
 
     fun onBackButtonClicked() {}
 }

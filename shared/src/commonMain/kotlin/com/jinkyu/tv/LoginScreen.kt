@@ -43,9 +43,8 @@ fun LoginScreen(
     Column(
         modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
     ) {
-        Divider(height = 84)
+        Divider(height = 42)
         AppLogoLabel()
-        Divider(height = 40)
         WelcomeLabel(
             firstLabel = LoginMessage1,
             secondLabel = LoginMessage2
