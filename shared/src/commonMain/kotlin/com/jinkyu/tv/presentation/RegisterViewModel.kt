@@ -32,6 +32,9 @@ class RegisterViewModel(
         initialValue = false
     )
 
+    private val _rememberMe: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
+    val rememberMe: StateFlow<Boolean> = _rememberMe.asStateFlow()
+
     fun onUserInput(type: UserInput, input: String) {
         when (type) {
             UserInput.NICKNAME -> _nickName.value = input
@@ -43,4 +46,8 @@ class RegisterViewModel(
     fun onSignUpClicked() {}
 
     fun onBackButtonClicked() {}
+
+    fun onRememberMeClicked(enable: Boolean) {
+        _rememberMe.value = enable
+    }
 }
