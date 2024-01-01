@@ -26,6 +26,8 @@ import com.jinkyu.tv.ui.SignUpLabel
 import com.jinkyu.tv.ui.SignUpMessage1
 import com.jinkyu.tv.ui.SignUpMessage2
 import com.jinkyu.tv.ui.DividerWeight
+import com.jinkyu.tv.ui.SocialLoginButtons
+import com.jinkyu.tv.ui.SocialLoginDivider
 import com.jinkyu.tv.ui.system.AlreadyTextButton
 import com.jinkyu.tv.ui.system.AppLogoLabel
 import com.jinkyu.tv.ui.system.Button
@@ -85,16 +87,22 @@ fun RegisterScreen(
             )
             DividerWeight()
             Button(
-                buttonLabel = SignUpLabel,
+                buttonLabel = LoginLabel,
                 enable = registerEnable,
-                onClicked = { viewModel.onRegisterClicked() }
+                onClicked = { viewModel.onSignUpClicked() }
             )
+            SocialLoginDivider()
+            SocialLoginButtons(
+                onGitHubButtonClicked = { viewModel.onSignUpClicked() },
+                onGitLabButtonClicked = { viewModel.onSignUpClicked() }
+            )
+            DividerWeight()
             AlreadyTextButton(
                 message = AlreadyHaveAccount,
                 buttonLabel = LoginLabel,
-                onButtonClicked = {}
+                onButtonClicked = { viewModel.onSignUpClicked() }
             )
-            Divider(height = 38)
+            Divider(height = 18)
         }
     }
 }

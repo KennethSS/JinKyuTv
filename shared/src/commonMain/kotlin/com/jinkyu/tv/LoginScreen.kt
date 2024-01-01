@@ -25,8 +25,10 @@ import androidx.compose.ui.unit.sp
 import com.jinkyu.tv.domain.user.UserInput
 import com.jinkyu.tv.presentation.LoginViewModel
 import com.jinkyu.tv.ui.Divider
+import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.EmailHint
 import com.jinkyu.tv.ui.EmailLabel
+import com.jinkyu.tv.ui.ForgotPasswordLabel
 import com.jinkyu.tv.ui.HaveNotAccount
 import com.jinkyu.tv.ui.LoginLabel
 import com.jinkyu.tv.ui.LoginMessage1
@@ -35,8 +37,8 @@ import com.jinkyu.tv.ui.PasswordHint
 import com.jinkyu.tv.ui.PasswordLabel
 import com.jinkyu.tv.ui.RememberMeLabel
 import com.jinkyu.tv.ui.SignUpLabel
-import com.jinkyu.tv.ui.DividerWeight
-import com.jinkyu.tv.ui.ForgotPasswordLabel
+import com.jinkyu.tv.ui.SocialLoginButtons
+import com.jinkyu.tv.ui.SocialLoginDivider
 import com.jinkyu.tv.ui.system.AlreadyTextButton
 import com.jinkyu.tv.ui.system.AppLogoLabel
 import com.jinkyu.tv.ui.system.Button
@@ -116,11 +118,17 @@ fun LoginScreen(
             enable = loginEnable,
             onClicked = { viewModel.onLoginClicked() }
         )
+        SocialLoginDivider()
+        SocialLoginButtons(
+            onGitHubButtonClicked = { viewModel.onSignUpClicked() },
+            onGitLabButtonClicked = { viewModel.onSignUpClicked() }
+        )
+        DividerWeight()
         AlreadyTextButton(
             message = HaveNotAccount,
             buttonLabel = SignUpLabel,
             onButtonClicked = { viewModel.onSignUpClicked() }
         )
-        Divider(height = 38)
+        Divider(height = 18)
     }
 }

@@ -23,3 +23,7 @@ const val AlreadyHaveAccount = "Already have an account ?"
 
 const val RememberMeLabel = "Remember Me"
 const val ForgotPasswordLabel = "Forgot Password"
+
+const val GitHubLabel = "GitHub"
+const val GitLabLabel = "GitLab"
+const val OrWithLabel = "Or With"
