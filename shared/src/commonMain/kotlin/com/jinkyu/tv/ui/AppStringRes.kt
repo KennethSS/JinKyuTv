@@ -20,3 +20,6 @@ const val SignUpMessage2 = "Connect with your friends today!"
 const val HaveNotAccount = "Don’t have an account ? "
 
 const val AlreadyHaveAccount = "Already have an account ?"
+
+const val RememberMeLabel = "Remember Me"
+const val ForgotPasswordLabel = "Forgot Password"

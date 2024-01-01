@@ -25,7 +25,7 @@ import com.jinkyu.tv.ui.PasswordLabel
 import com.jinkyu.tv.ui.SignUpLabel
 import com.jinkyu.tv.ui.SignUpMessage1
 import com.jinkyu.tv.ui.SignUpMessage2
-import com.jinkyu.tv.ui.SpacerWeight
+import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.system.AlreadyTextButton
 import com.jinkyu.tv.ui.system.AppLogoLabel
 import com.jinkyu.tv.ui.system.Button
@@ -83,7 +83,7 @@ fun RegisterScreen(
                 onValueChange = { viewModel.onUserInput(type = UserInput.PASSWORD, input = it) },
                 hint = PasswordHint
             )
-            SpacerWeight()
+            DividerWeight()
             Button(
                 buttonLabel = SignUpLabel,
                 enable = registerEnable,
