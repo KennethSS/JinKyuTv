@@ -58,7 +58,7 @@ fun Label(
     label: String
 ) {
     Text(
-        modifier = Modifier.padding(vertical = 8.dp),
+        modifier = Modifier.padding(top = 12.dp, bottom = 6.dp),
         text = label,
         fontSize = 14.sp,
         fontStyle = FontStyle.Normal,
