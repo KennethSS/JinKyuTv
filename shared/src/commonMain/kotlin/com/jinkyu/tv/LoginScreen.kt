@@ -72,6 +72,7 @@ fun LoginScreen(
             onCheckBoxClicked = { viewModel.onRememberMeClicked(it) },
             onForgotPasswordClicked = { viewModel.onSignUpClicked() }
         )
+        Divider(height = 80)
         DividerWeight()
         Button(
             buttonLabel = LoginLabel,
