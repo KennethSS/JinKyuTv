@@ -2,7 +2,9 @@ package com.jinkyu.tv
 
 import androidx.compose.ui.uikit.ComposeUIViewControllerDelegate
 import androidx.compose.ui.window.ComposeUIViewController
+import com.jinkyu.tv.presentation.login.LoginScreen
 import com.jinkyu.tv.presentation.player.PlayerViewModel
+import com.jinkyu.tv.presentation.register.RegisterScreen
 import com.jinkyu.tv.presentation.splash.SplashScreen
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.coroutineScope
@@ -22,6 +24,30 @@ fun SplashViewController(
         SplashScreen(
             navigateMain = navigateMain,
             navigateLogin = navigateLogin,
+        )
+    }
+}
+
+fun LoginViewController(
+    navigateRegister: () -> Unit,
+    navigateMain: () -> Unit,
+): UIViewController {
+    return ComposeUIViewController {
+        LoginScreen(
+            navigateRegister = navigateRegister,
+            navigateMain = navigateMain
+        )
+    }
+}
+
+fun RegisterViewController(
+    navigateLogin: () -> Unit,
+    navigateMain: () -> Unit,
+): UIViewController {
+    return ComposeUIViewController {
+        RegisterScreen(
+            navigateLogin = navigateLogin,
+            navigateMain = navigateMain
         )
     }
 }
