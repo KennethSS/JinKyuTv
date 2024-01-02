@@ -18,7 +18,6 @@ import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.EmailHint
 import com.jinkyu.tv.ui.EmailLabel
 import com.jinkyu.tv.ui.HaveNotAccount
-import com.jinkyu.tv.ui.LoginLabel
 import com.jinkyu.tv.ui.LoginMessage1
 import com.jinkyu.tv.ui.LoginMessage2
 import com.jinkyu.tv.ui.PasswordHint
@@ -55,6 +54,7 @@ fun LoginScreen(
     val password by viewModel.password.collectAsState()
     val loginEnable by viewModel.loginEnable.collectAsState()
     val rememberMe by viewModel.rememberMe.collectAsState()
+    val loginLabel by viewModel.error.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize().background(Color.White).padding(horizontal = 26.dp)
@@ -87,7 +87,7 @@ fun LoginScreen(
         Divider(height = 80)
         DividerWeight()
         Button(
-            buttonLabel = LoginLabel,
+            buttonLabel = loginLabel,
             enable = loginEnable,
             onClicked = { viewModel.onLoginClicked() }
         )

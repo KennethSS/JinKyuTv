@@ -19,7 +19,7 @@ class UserRepositoryImpl(
         nickName: String,
         email: String,
         password: String
-    ): Result<PostRegisterResponse> {
+    ): Result<PostRegisterResponse?> {
         val request = PostRegisterRequest(nickName = nickName, id = email, email = email, password = password)
         runCatching {
             httpClient.post {
@@ -42,7 +42,7 @@ class UserRepositoryImpl(
     override suspend fun login(
         email: String,
         password: String
-    ): Result<PostLoginResponse> {
+    ): Result<PostLoginResponse?> {
         val request = PostLoginRequest(id = email, password = password)
         runCatching {
             httpClient.post {
@@ -54,11 +54,11 @@ class UserRepositoryImpl(
             val result = it.body<BaseResponse<PostLoginResponse>>()
             return when (result.isSuccess) {
                 true -> Result.Success(result.result)
-                false -> Result.Error(Throwable(message = result.message))
+                false -> Result.Error(Throwable(message = "아이디 또는 비밀번호를 확인해주세요."))
             }
         }.onFailure {
             return Result.Error(it)
         }
-        return Result.Error(Throwable("네트워크 연동에 실패했습니다."))
+        return Result.Error(Throwable("네트워크 연결에 실패했습니다."))
     }
 }

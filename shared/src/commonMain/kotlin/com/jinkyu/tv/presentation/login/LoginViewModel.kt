@@ -2,7 +2,6 @@ package com.jinkyu.tv.presentation.login
 
 import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.domain.user.UserInput
-import com.jinkyu.tv.presentation.register.RegisterNavigationAction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,8 +24,8 @@ class LoginViewModel(
     private val _navigationAction: MutableSharedFlow<LoginNavigationAction> = MutableSharedFlow<LoginNavigationAction>()
     val navigationAction: SharedFlow<LoginNavigationAction> = _navigationAction.asSharedFlow()
 
-    private val _error: MutableSharedFlow<String> = MutableSharedFlow<String>()
-    val error: SharedFlow<String> = _error.asSharedFlow()
+    private val _error: MutableStateFlow<String> = MutableStateFlow<String>("Login")
+    val error: StateFlow<String> = _error.asStateFlow()
 
     private val _email: MutableStateFlow<String> = MutableStateFlow<String>("")
     val email: StateFlow<String> = _email.asStateFlow()
@@ -51,6 +50,7 @@ class LoginViewModel(
             UserInput.PASSWORD -> _password.value = input
             else -> {}
         }
+        _error.value = "Login"
     }
 
     fun onSignUpClicked() {
@@ -67,7 +67,7 @@ class LoginViewModel(
                     _navigationAction.emit(LoginNavigationAction.NavigateToMain)
                 }
                 result.throwable?.let {
-                    _error.emit(it.toString())
+                    _error.emit(it.message ?: "")
                 }
             }
         }

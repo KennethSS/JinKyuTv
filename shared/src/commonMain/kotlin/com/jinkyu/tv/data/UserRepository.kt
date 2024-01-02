@@ -10,10 +10,10 @@ interface UserRepository {
         nickName: String,
         email: String,
         password: String
-    ): Result<PostRegisterResponse>
+    ): Result<PostRegisterResponse?>
 
     suspend fun login(
         email: String,
         password: String
-    ): Result<PostLoginResponse>
+    ): Result<PostLoginResponse?>
 }
