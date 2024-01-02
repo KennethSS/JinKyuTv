@@ -1,13 +1,14 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.google.services.gradlePlugin)
 }
 
 android {
-    namespace = "com.jinkyu.tv.android"
+    namespace = "com.jinkyu.tv"
     compileSdk = 34
     defaultConfig {
-        applicationId = "com.jinkyu.tv.android"
+        applicationId = "com.jinkyu.tv"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

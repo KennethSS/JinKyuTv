@@ -1,4 +1,4 @@
-package com.jinkyu.tv.android
+package com.jinkyu.tv
 
 import android.app.Application
 import com.jinkyu.tv.di.initKoin

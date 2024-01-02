@@ -1,4 +1,4 @@
-package com.jinkyu.tv.android
+package com.jinkyu.tv
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
