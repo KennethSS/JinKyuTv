@@ -34,12 +34,13 @@ import com.jinkyu.tv.ui.system.Label
 import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.compose.koinInject
 
 @Composable
 fun LoginScreen(
     navigateRegister: () -> Unit,
     navigateMain: () -> Unit,
-    viewModel: LoginViewModel
+    viewModel: LoginViewModel = koinInject()
 ) {
     LaunchedEffect(Unit) {
         viewModel.navigationAction.collectLatest { navigation ->
