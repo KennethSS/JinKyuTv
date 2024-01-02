@@ -6,8 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.jinkyu.tv.di.commonModule
-import com.jinkyu.tv.presentation.login.LoginViewModel
-import com.jinkyu.tv.presentation.register.RegisterViewModel
 import org.koin.compose.KoinApplication
 
 @Composable
@@ -19,16 +17,11 @@ fun App() {
             )
         }
     ) {
-        val registerViewModel = RegisterViewModel() //koinInject<MainViewModel>()
-        val loginViewModel = LoginViewModel()
-
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             MainScreen()
-            //RegisterScreen(modifier = Modifier.fillMaxSize(), viewModel = registerViewModel)
-            //LoginScreen(modifier = Modifier.fillMaxSize(), viewModel = loginViewModel)
         }
     }
 }

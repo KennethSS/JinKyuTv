@@ -9,6 +9,8 @@ import androidx.compose.ui.interop.UIKitView
 import com.jinkyu.tv.presentation.MainViewModel
 import com.jinkyu.tv.presentation.player.PlayerViewModel
 import com.jinkyu.tv.presentation.splash.SplashViewModel
+import com.jinkyu.tv.presentation.login.LoginViewModel
+import com.jinkyu.tv.presentation.register.RegisterViewModel
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.koin.core.module.dsl.factoryOf
@@ -34,6 +36,12 @@ actual fun platformModule() = module {
     }
     factory {
         PlayerViewModel()
+    }
+    factory {
+        RegisterViewModel(null)
+    }
+    factory {
+        LoginViewModel(null)
     }
 }
 

@@ -34,7 +34,7 @@ fun AppNavHost(
             )
         }
         composable(
-            route = "login"
+            route = Login.route
         ) {
             LoginRoute(
                 navigateMain = { navController.navigateMain() },
@@ -42,7 +42,7 @@ fun AppNavHost(
             )
         }
         composable(
-            route = "register"
+            route = Register.route
         ) {
             RegisterRoute(
                 navigateLogin = { navController.navigateLogin() },

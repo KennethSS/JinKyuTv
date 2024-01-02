@@ -1,6 +1,7 @@
 package com.jinkyu.tv.presentation.register
 
 import com.jinkyu.tv.domain.user.UserInput
+import com.jinkyu.tv.presentation.login.LoginNavigationAction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -50,7 +51,11 @@ class RegisterViewModel(
         }
     }
 
-    fun onSignUpClicked() {}
+    fun onSignUpClicked() {
+        viewModelScope.launch {
+            if (registerEnable.value) _navigationAction.emit(RegisterNavigationAction.NavigateToMain)
+        }
+    }
 
     fun onBackButtonClicked() {
         viewModelScope.launch {
