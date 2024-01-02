@@ -1,6 +1,8 @@
 package com.jinkyu.tv
 
 import androidx.media3.exoplayer.ExoPlayer
+import com.jinkyu.tv.data.UserRepository
+import com.jinkyu.tv.data.UserRepositoryImpl
 import com.jinkyu.tv.presentation.login.LoginViewModel
 import com.jinkyu.tv.presentation.MainViewModel
 import com.jinkyu.tv.presentation.register.RegisterViewModel
@@ -9,11 +11,13 @@ import com.jinkyu.tv.presentation.splash.AndroidSplashViewModel
 import com.jinkyu.tv.presentation.register.AndroidRegisterViewModel
 import com.jinkyu.tv.presentation.login.AndroidLoginViewModel
 import com.jinkyu.tv.presentation.splash.SplashViewModel
+import io.ktor.client.HttpClient
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 actual fun platformModule() = module {
-
+    single<HttpClient> { HttpClient() }
+    single<UserRepository> { UserRepositoryImpl(get()) }
     factory { params ->
         SplashViewModel(params.get())
     }
@@ -30,7 +34,7 @@ actual fun platformModule() = module {
         RegisterViewModel(params.get())
     }
     factory { params ->
-        LoginViewModel(params.get())
+        LoginViewModel(params.get(), params.get())
     }
     viewModelOf(::AndroidSplashViewModel)
     viewModelOf(::AndroidRegisterViewModel)

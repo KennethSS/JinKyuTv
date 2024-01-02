@@ -2,12 +2,16 @@ package com.jinkyu.tv.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jinkyu.tv.data.UserRepository
 
-class AndroidLoginViewModel : ViewModel() {
+class AndroidLoginViewModel(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
     val viewModel by lazy {
         LoginViewModel(
-            coroutineScope = viewModelScope
+            coroutineScope = viewModelScope,
+            userRepository = userRepository
         )
     }
 }
