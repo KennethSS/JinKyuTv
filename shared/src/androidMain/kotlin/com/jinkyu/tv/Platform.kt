@@ -1,5 +1,6 @@
 package com.jinkyu.tv
 
+import androidx.media3.exoplayer.ExoPlayer
 import com.jinkyu.tv.presentation.MainViewModel
 import com.jinkyu.tv.presentation.player.PlayerViewModel
 import com.jinkyu.tv.presentation.splash.AndroidSplashViewModel
@@ -21,6 +22,11 @@ actual fun platformModule() = module {
     factory { param ->
         MainViewModel()
     }
-    factoryOf(::PlayerViewModel)
+    factory { param ->
+        ExoPlayer.Builder(param.get())
+    }
+    factory { param ->
+        PlayerViewModel()
+    }
     viewModelOf(::AndroidSplashViewModel)
 }
