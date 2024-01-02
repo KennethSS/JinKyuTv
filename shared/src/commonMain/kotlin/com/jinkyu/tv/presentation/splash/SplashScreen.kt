@@ -15,14 +15,14 @@ import org.koin.compose.koinInject
 @Composable
 fun SplashScreen(
     navigateMain: () -> Unit,
-    navigateSign: () -> Unit,
+    navigateLogin: () -> Unit,
     viewModel: SplashViewModel = koinInject(),
 ) {
     LaunchedEffect(true) {
         viewModel.effect.collect { effect ->
             when (effect) {
                 SplashEffect.NavigateMain -> navigateMain()
-                SplashEffect.NavigateSign -> navigateSign()
+                SplashEffect.NavigateLogin -> navigateLogin()
             }
         }
     }

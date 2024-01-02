@@ -19,7 +19,7 @@ class SplashViewModel(
     init {
         viewModelScope.launch {
             delay(1000L)
-            _effect.emit(SplashEffect.NavigateMain)
+            _effect.emit(SplashEffect.NavigateLogin)
         }
     }
 }

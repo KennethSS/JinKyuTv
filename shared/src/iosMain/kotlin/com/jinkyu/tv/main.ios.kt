@@ -16,12 +16,12 @@ import platform.UIKit.UIViewController
 
 fun SplashViewController(
     navigateMain: () -> Unit,
-    navigateSign: () -> Unit
+    navigateLogin: () -> Unit
 ): UIViewController {
     return ComposeUIViewController {
         SplashScreen(
             navigateMain = navigateMain,
-            navigateSign = navigateSign,
+            navigateLogin = navigateLogin,
         )
     }
 }
