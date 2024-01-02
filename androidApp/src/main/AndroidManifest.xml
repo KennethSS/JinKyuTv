@@ -10,7 +10,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AppActivity"
-            android:exported="true">
+            android:exported="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
