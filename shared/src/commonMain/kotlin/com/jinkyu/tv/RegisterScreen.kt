@@ -38,6 +38,7 @@ import com.jinkyu.tv.ui.system.WelcomeLabel
 
 @Composable
 fun RegisterScreen(
+    navigateLogin: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: RegisterViewModel
 ) {
