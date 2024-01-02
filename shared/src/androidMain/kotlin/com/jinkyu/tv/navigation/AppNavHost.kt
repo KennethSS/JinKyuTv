@@ -34,7 +34,8 @@ fun AppNavHost(
             )
         }
         composable(
-            route = Login.route
+            route = Login.route,
+            enterTransition = { slideInFromRight() }
         ) {
             LoginRoute(
                 navigateMain = { navController.navigateMain() },
@@ -42,7 +43,8 @@ fun AppNavHost(
             )
         }
         composable(
-            route = Register.route
+            route = Register.route,
+            enterTransition = { slideInFromRight() }
         ) {
             RegisterRoute(
                 navigateLogin = { navController.navigateUp() },
@@ -50,7 +52,8 @@ fun AppNavHost(
             )
         }
         composable(
-            route = Main.route
+            route = Main.route,
+            enterTransition = { slideInFromRight() }
         ) {
             MainScreen()
         }
@@ -61,4 +64,4 @@ fun AnimatedContentTransitionScope<NavBackStackEntry>.slideInFromRight() =
     slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left)
 
 fun AnimatedContentTransitionScope<NavBackStackEntry>.slideOutToRight() =
-    slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
+    slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right)
