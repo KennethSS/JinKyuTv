@@ -35,6 +35,7 @@ import com.jinkyu.tv.ui.system.JinKyuTextField
 import com.jinkyu.tv.ui.system.Label
 import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun RegisterScreen(
@@ -43,9 +44,9 @@ fun RegisterScreen(
     modifier: Modifier = Modifier,
     viewModel: RegisterViewModel
 ) {
-    LaunchedEffect(true) {
-        viewModel.navigationAction.collect { effect ->
-            when (effect) {
+    LaunchedEffect(Unit) {
+        viewModel.navigationAction.collectLatest { navigation ->
+            when (navigation) {
                 RegisterNavigationAction.NavigateToMain -> navigateMain()
                 RegisterNavigationAction.NavigateLogin -> navigateLogin()
             }

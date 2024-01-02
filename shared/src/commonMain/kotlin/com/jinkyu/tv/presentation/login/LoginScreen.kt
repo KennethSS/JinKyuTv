@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jinkyu.tv.domain.user.UserInput
-import com.jinkyu.tv.presentation.login.LoginViewModel
 import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.EmailHint
@@ -33,6 +33,7 @@ import com.jinkyu.tv.ui.system.JinKyuTextField
 import com.jinkyu.tv.ui.system.Label
 import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun LoginScreen(
@@ -41,6 +42,15 @@ fun LoginScreen(
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.navigationAction.collectLatest { navigation ->
+            when (navigation) {
+                LoginNavigationAction.NavigateToMain -> navigateMain()
+                LoginNavigationAction.NavigateRegister -> navigateRegister()
+            }
+        }
+    }
+
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
     val loginEnable by viewModel.loginEnable.collectAsState()
