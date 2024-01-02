@@ -19,7 +19,7 @@ actual fun VideoPlayer(modifier: Modifier, url: String) {
                     .build()
 
                 it.player?.let { player ->
-                    val mediaItem = MediaItem.fromUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+                    val mediaItem = MediaItem.fromUri(url)
                     player.setMediaItem(mediaItem)
                     player.prepare()
                     player.play()

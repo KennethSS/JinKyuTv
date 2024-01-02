@@ -1,23 +1,26 @@
 [versions]
-agp = "8.1.1"
-kotlin = "1.9.10"
-compose = "1.5.1"
-compose-compiler = "1.5.3"
-compose-material3 = "1.1.2"
-compose-util = "1.4.1"
-androidx-activityCompose = "1.7.2"
+agp = "8.2.0"
+kotlin = "1.9.21"
+compose = "1.5.11"
+compose-compiler = "1.5.6"
+compose-material3 = "1.2.0-beta01"
+compose-util = "1.5.11"
+compose-nav = "2.7.6"
+compose-preview = "1.5.4"
+androidx-activityCompose = "1.8.2"
 exoplayer = "1.1.0"
-koin = "3.5.0"
+koin = "3.5.3"
 koin-compose = "1.1.2"
-ktor = "2.1.3"
+ktor = "2.2.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-preview" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-nav" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 compose-util = { module = "org.jetbrains.compose.ui:ui-util", version.ref = "compose-util" }
 exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "exoplayer" }

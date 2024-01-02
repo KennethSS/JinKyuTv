@@ -11,7 +11,7 @@ import com.jinkyu.tv.presentation.RegisterViewModel
 import org.koin.compose.KoinApplication
 
 @Composable
-fun App(platform: String) {
+fun App() {
 
     val registerViewModel = RegisterViewModel() //koinInject<MainViewModel>()
     val loginViewModel = LoginViewModel()

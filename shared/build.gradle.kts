@@ -63,6 +63,7 @@ kotlin {
                 implementation(libs.exoplayer.ui)
                 implementation(libs.koin.androidx.compose)
                 implementation(libs.ktor.android)
+                implementation(libs.compose.navigation)
             }
         }
         val iosMain by getting {

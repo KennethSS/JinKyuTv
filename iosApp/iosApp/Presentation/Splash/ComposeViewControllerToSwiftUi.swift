@@ -16,10 +16,11 @@ struct ComposeViewControllerToSwiftUi: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
     
-        return Main_iosKt.ChatViewController()
+        return Main_iosKt.MainViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
     }
+    
 }

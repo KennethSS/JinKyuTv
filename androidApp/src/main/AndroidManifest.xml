@@ -4,12 +4,12 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".Application"
+        android:name=".AndroidApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".AppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
