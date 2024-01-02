@@ -1,5 +1,6 @@
 package com.jinkyu.tv.presentation.register
 
+import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.domain.user.UserInput
 import com.jinkyu.tv.presentation.login.LoginNavigationAction
 import kotlinx.coroutines.CoroutineScope
@@ -16,12 +17,16 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val coroutineScope: CoroutineScope? = null
+    private val coroutineScope: CoroutineScope? = null,
+    private val userRepository: UserRepository
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
 
     private val _navigationAction: MutableSharedFlow<RegisterNavigationAction> = MutableSharedFlow<RegisterNavigationAction>()
     val navigationAction: SharedFlow<RegisterNavigationAction> = _navigationAction.asSharedFlow()
+
+    private val _error: MutableStateFlow<String> = MutableStateFlow<String>("Sign Up")
+    val error: StateFlow<String> = _error.asStateFlow()
 
     private val _email: MutableStateFlow<String> = MutableStateFlow<String>("")
     val email: StateFlow<String> = _email.asStateFlow()
@@ -49,11 +54,24 @@ class RegisterViewModel(
             UserInput.EMAIL -> _email.value = input
             UserInput.PASSWORD -> _password.value = input
         }
+        _error.value = "Sign Up"
     }
 
     fun onSignUpClicked() {
         viewModelScope.launch {
-            if (registerEnable.value) _navigationAction.emit(RegisterNavigationAction.NavigateToMain)
+            if (registerEnable.value) {
+                val result = userRepository.register(
+                    nickName = nickName.value,
+                    email = email.value,
+                    password = password.value
+                )
+                result.data?.let {
+                    _navigationAction.emit(RegisterNavigationAction.NavigateToMain)
+                }
+                result.throwable?.let {
+                    _error.emit(it.message ?: "")
+                }
+            }
         }
     }
 

@@ -58,6 +58,7 @@ fun RegisterScreen(
     val password by viewModel.password.collectAsState()
     val registerEnable by viewModel.registerEnable.collectAsState()
     val rememberMe by viewModel.rememberMe.collectAsState()
+    val signUpLabel by viewModel.error.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize().background(Color.White).padding(horizontal = 26.dp)
@@ -96,7 +97,7 @@ fun RegisterScreen(
         )
         DividerWeight()
         Button(
-            buttonLabel = SignUpLabel,
+            buttonLabel = signUpLabel,
             enable = registerEnable,
             onClicked = { viewModel.onSignUpClicked() }
         )
