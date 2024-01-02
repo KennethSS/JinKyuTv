@@ -1,4 +1,4 @@
-package com.jinkyu.tv
+package com.jinkyu.tv.presentation.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -11,20 +11,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jinkyu.tv.domain.user.UserInput
-import com.jinkyu.tv.presentation.RegisterViewModel
-import com.jinkyu.tv.ui.AlreadyHaveAccount
+import com.jinkyu.tv.presentation.login.LoginViewModel
 import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.EmailHint
 import com.jinkyu.tv.ui.EmailLabel
+import com.jinkyu.tv.ui.HaveNotAccount
 import com.jinkyu.tv.ui.LoginLabel
-import com.jinkyu.tv.ui.NicknameHint
-import com.jinkyu.tv.ui.NicknameLabel
+import com.jinkyu.tv.ui.LoginMessage1
+import com.jinkyu.tv.ui.LoginMessage2
 import com.jinkyu.tv.ui.PasswordHint
 import com.jinkyu.tv.ui.PasswordLabel
 import com.jinkyu.tv.ui.SignUpLabel
-import com.jinkyu.tv.ui.SignUpMessage1
-import com.jinkyu.tv.ui.SignUpMessage2
 import com.jinkyu.tv.ui.SocialLoginButtons
 import com.jinkyu.tv.ui.SocialLoginDivider
 import com.jinkyu.tv.ui.system.AlreadyTextButton
@@ -37,15 +35,15 @@ import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
 
 @Composable
-fun RegisterScreen(
-    navigateLogin: () -> Unit,
+fun LoginScreen(
+    navigateRegister: () -> Unit,
+    navigateMain: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: RegisterViewModel
+    viewModel: LoginViewModel
 ) {
-    val nickName by viewModel.nickName.collectAsState()
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
-    val registerEnable by viewModel.registerEnable.collectAsState()
+    val loginEnable by viewModel.loginEnable.collectAsState()
     val rememberMe by viewModel.rememberMe.collectAsState()
 
     Column(
@@ -53,15 +51,8 @@ fun RegisterScreen(
     ) {
         AppLogoLabel()
         WelcomeLabel(
-            firstLabel = SignUpMessage1,
-            secondLabel = SignUpMessage2
-        )
-        Label(label = NicknameLabel)
-        JinKyuTextField(
-            modifier = Modifier.fillMaxWidth(),
-            text = nickName,
-            onValueChange = { viewModel.onUserInput(type = UserInput.NICKNAME, input = it) },
-            hint = NicknameHint
+            firstLabel = LoginMessage1,
+            secondLabel = LoginMessage2
         )
         Label(label = EmailLabel)
         JinKyuTextField(
@@ -81,24 +72,25 @@ fun RegisterScreen(
         RememberCheckBox(
             rememberMe = rememberMe,
             onCheckBoxClicked = { viewModel.onRememberMeClicked(it) },
-            onForgotPasswordClicked = {  }
+            onForgotPasswordClicked = { viewModel.onSignUpClicked() }
         )
+        Divider(height = 80)
         DividerWeight()
         Button(
-            buttonLabel = SignUpLabel,
-            enable = registerEnable,
-            onClicked = { viewModel.onSignUpClicked() }
+            buttonLabel = LoginLabel,
+            enable = loginEnable,
+            onClicked = { viewModel.onLoginClicked() }
         )
         SocialLoginDivider()
         SocialLoginButtons(
-            onGitHubButtonClicked = { viewModel.onBackButtonClicked() },
-            onGitLabButtonClicked = { viewModel.onBackButtonClicked() }
+            onGitHubButtonClicked = { viewModel.onSignUpClicked() },
+            onGitLabButtonClicked = { viewModel.onSignUpClicked() }
         )
         DividerWeight()
         AlreadyTextButton(
-            message = AlreadyHaveAccount,
-            buttonLabel = LoginLabel,
-            onButtonClicked = { viewModel.onBackButtonClicked() }
+            message = HaveNotAccount,
+            buttonLabel = SignUpLabel,
+            onButtonClicked = { viewModel.onSignUpClicked() }
         )
         Divider(height = 18)
     }

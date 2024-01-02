@@ -1,28 +1,30 @@
-package com.jinkyu.tv
+package com.jinkyu.tv.presentation.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jinkyu.tv.domain.user.UserInput
-import com.jinkyu.tv.presentation.LoginViewModel
+import com.jinkyu.tv.ui.AlreadyHaveAccount
 import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.EmailHint
 import com.jinkyu.tv.ui.EmailLabel
-import com.jinkyu.tv.ui.HaveNotAccount
 import com.jinkyu.tv.ui.LoginLabel
-import com.jinkyu.tv.ui.LoginMessage1
-import com.jinkyu.tv.ui.LoginMessage2
+import com.jinkyu.tv.ui.NicknameHint
+import com.jinkyu.tv.ui.NicknameLabel
 import com.jinkyu.tv.ui.PasswordHint
 import com.jinkyu.tv.ui.PasswordLabel
 import com.jinkyu.tv.ui.SignUpLabel
+import com.jinkyu.tv.ui.SignUpMessage1
+import com.jinkyu.tv.ui.SignUpMessage2
 import com.jinkyu.tv.ui.SocialLoginButtons
 import com.jinkyu.tv.ui.SocialLoginDivider
 import com.jinkyu.tv.ui.system.AlreadyTextButton
@@ -35,15 +37,25 @@ import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
 
 @Composable
-fun LoginScreen(
-    navigateRegister: () -> Unit,
+fun RegisterScreen(
+    navigateLogin: () -> Unit,
     navigateMain: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel
+    viewModel: RegisterViewModel
 ) {
+    LaunchedEffect(true) {
+        viewModel.navigationAction.collect { effect ->
+            when (effect) {
+                RegisterNavigationAction.NavigateToMain -> navigateMain()
+                RegisterNavigationAction.NavigateLogin -> navigateLogin()
+            }
+        }
+    }
+
+    val nickName by viewModel.nickName.collectAsState()
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
-    val loginEnable by viewModel.loginEnable.collectAsState()
+    val registerEnable by viewModel.registerEnable.collectAsState()
     val rememberMe by viewModel.rememberMe.collectAsState()
 
     Column(
@@ -51,8 +63,15 @@ fun LoginScreen(
     ) {
         AppLogoLabel()
         WelcomeLabel(
-            firstLabel = LoginMessage1,
-            secondLabel = LoginMessage2
+            firstLabel = SignUpMessage1,
+            secondLabel = SignUpMessage2
+        )
+        Label(label = NicknameLabel)
+        JinKyuTextField(
+            modifier = Modifier.fillMaxWidth(),
+            text = nickName,
+            onValueChange = { viewModel.onUserInput(type = UserInput.NICKNAME, input = it) },
+            hint = NicknameHint
         )
         Label(label = EmailLabel)
         JinKyuTextField(
@@ -72,25 +91,24 @@ fun LoginScreen(
         RememberCheckBox(
             rememberMe = rememberMe,
             onCheckBoxClicked = { viewModel.onRememberMeClicked(it) },
-            onForgotPasswordClicked = { viewModel.onSignUpClicked() }
+            onForgotPasswordClicked = {  }
         )
-        Divider(height = 80)
         DividerWeight()
         Button(
-            buttonLabel = LoginLabel,
-            enable = loginEnable,
-            onClicked = { viewModel.onLoginClicked() }
+            buttonLabel = SignUpLabel,
+            enable = registerEnable,
+            onClicked = { viewModel.onSignUpClicked() }
         )
         SocialLoginDivider()
         SocialLoginButtons(
-            onGitHubButtonClicked = { viewModel.onSignUpClicked() },
-            onGitLabButtonClicked = { viewModel.onSignUpClicked() }
+            onGitHubButtonClicked = { viewModel.onBackButtonClicked() },
+            onGitLabButtonClicked = { viewModel.onBackButtonClicked() }
         )
         DividerWeight()
         AlreadyTextButton(
-            message = HaveNotAccount,
-            buttonLabel = SignUpLabel,
-            onButtonClicked = { viewModel.onSignUpClicked() }
+            message = AlreadyHaveAccount,
+            buttonLabel = LoginLabel,
+            onButtonClicked = { viewModel.onBackButtonClicked() }
         )
         Divider(height = 18)
     }
