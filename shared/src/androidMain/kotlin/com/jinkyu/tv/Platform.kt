@@ -41,7 +41,7 @@ actual fun platformModule() = module {
         PlayerViewModel()
     }
     factory { params ->
-        RegisterViewModel(params.get())
+        RegisterViewModel(params.get(), params.get())
     }
     factory { params ->
         LoginViewModel(params.get(), params.get())

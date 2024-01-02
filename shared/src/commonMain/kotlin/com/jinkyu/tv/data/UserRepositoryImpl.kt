@@ -20,7 +20,7 @@ class UserRepositoryImpl(
         email: String,
         password: String
     ): Result<PostRegisterResponse?> {
-        val request = PostRegisterRequest(nickName = nickName, id = email, email = email, password = password)
+        val request = PostRegisterRequest(userName = nickName, id = email, email = email, password = password)
         runCatching {
             httpClient.post {
                 url(NetworkConstants.BASE_URL + "/users")
