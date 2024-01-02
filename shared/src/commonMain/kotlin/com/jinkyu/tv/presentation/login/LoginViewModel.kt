@@ -1,5 +1,6 @@
 package com.jinkyu.tv.presentation.login
 
+import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.domain.user.UserInput
 import com.jinkyu.tv.presentation.register.RegisterNavigationAction
 import kotlinx.coroutines.CoroutineScope
@@ -16,12 +17,16 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val coroutineScope: CoroutineScope? = null
+    private val coroutineScope: CoroutineScope? = null,
+    private val userRepository: UserRepository
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
 
     private val _navigationAction: MutableSharedFlow<LoginNavigationAction> = MutableSharedFlow<LoginNavigationAction>()
     val navigationAction: SharedFlow<LoginNavigationAction> = _navigationAction.asSharedFlow()
+
+    private val _error: MutableSharedFlow<String> = MutableSharedFlow<String>()
+    val error: SharedFlow<String> = _error.asSharedFlow()
 
     private val _email: MutableStateFlow<String> = MutableStateFlow<String>("")
     val email: StateFlow<String> = _email.asStateFlow()
@@ -56,7 +61,15 @@ class LoginViewModel(
 
     fun onLoginClicked() {
         viewModelScope.launch {
-            if (loginEnable.value) _navigationAction.emit(LoginNavigationAction.NavigateToMain)
+            if (loginEnable.value) {
+                val result = userRepository.login(email = email.value, password = password.value)
+                result.data?.let {
+                    _navigationAction.emit(LoginNavigationAction.NavigateToMain)
+                }
+                result.throwable?.let {
+                    _error.emit(it.toString())
+                }
+            }
         }
     }
 
