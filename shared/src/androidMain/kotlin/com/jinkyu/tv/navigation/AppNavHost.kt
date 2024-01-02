@@ -9,13 +9,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jinkyu.tv.MainScreen
-import com.jinkyu.tv.RegisterScreen
-import com.jinkyu.tv.presentation.RegisterViewModel
 import com.jinkyu.tv.presentation.login.LoginRoute
 import com.jinkyu.tv.presentation.register.RegisterRoute
-import com.jinkyu.tv.presentation.splash.AndroidSplashViewModel
 import com.jinkyu.tv.presentation.splash.SplashRoute
-import com.jinkyu.tv.presentation.splash.SplashScreen
 
 @Composable
 fun AppNavHost(
@@ -49,7 +45,8 @@ fun AppNavHost(
             route = "register"
         ) {
             RegisterRoute(
-                navigateLogin = { navController.navigateLogin() }
+                navigateLogin = { navController.navigateLogin() },
+                navigateMain = { navController.navigateMain() }
             )
         }
         composable(

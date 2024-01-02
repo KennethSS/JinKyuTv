@@ -1,9 +1,9 @@
 package com.jinkyu.tv
 
 import androidx.media3.exoplayer.ExoPlayer
-import com.jinkyu.tv.presentation.LoginViewModel
+import com.jinkyu.tv.presentation.login.LoginViewModel
 import com.jinkyu.tv.presentation.MainViewModel
-import com.jinkyu.tv.presentation.RegisterViewModel
+import com.jinkyu.tv.presentation.register.RegisterViewModel
 import com.jinkyu.tv.presentation.player.PlayerViewModel
 import com.jinkyu.tv.presentation.splash.AndroidSplashViewModel
 import com.jinkyu.tv.presentation.register.AndroidRegisterViewModel

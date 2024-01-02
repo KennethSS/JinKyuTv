@@ -6,9 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.jinkyu.tv.di.commonModule
-import com.jinkyu.tv.presentation.splash.SplashScreen
-import com.jinkyu.tv.presentation.LoginViewModel
-import com.jinkyu.tv.presentation.RegisterViewModel
+import com.jinkyu.tv.presentation.login.LoginViewModel
+import com.jinkyu.tv.presentation.register.RegisterViewModel
 import org.koin.compose.KoinApplication
 
 @Composable
