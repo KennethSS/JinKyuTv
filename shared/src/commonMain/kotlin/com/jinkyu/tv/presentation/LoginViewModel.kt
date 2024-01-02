@@ -29,6 +29,9 @@ class LoginViewModel(
         initialValue = false
     )
 
+    private val _rememberMe: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
+    val rememberMe: StateFlow<Boolean> = _rememberMe.asStateFlow()
+
     fun onUserInput(type: UserInput, input: String) {
         when (type) {
             UserInput.EMAIL -> _email.value = input
@@ -37,6 +40,11 @@ class LoginViewModel(
         }
     }
 
-    fun onCreateUserClicked() {}
+    fun onSignUpClicked() {}
+
     fun onLoginClicked() {}
+
+    fun onRememberMeClicked(enable: Boolean) {
+        _rememberMe.value = enable
+    }
 }

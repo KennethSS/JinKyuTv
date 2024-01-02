@@ -21,7 +21,7 @@ fun App(platform: String) {
         contentAlignment = Alignment.Center
     ) {
 //        MainScreen()
-        RegisterScreen(modifier = Modifier.fillMaxSize(), viewModel = registerViewModel)
-//        LoginScreen(modifier = Modifier.fillMaxSize())
+//        RegisterScreen(modifier = Modifier.fillMaxSize(), viewModel = registerViewModel)
+        LoginScreen(modifier = Modifier.fillMaxSize(), viewModel = loginViewModel)
     }
 }
