@@ -2,6 +2,7 @@ package com.jinkyu.tv.presentation.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -39,7 +40,6 @@ import kotlinx.coroutines.flow.collectLatest
 fun LoginScreen(
     navigateRegister: () -> Unit,
     navigateMain: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: LoginViewModel
 ) {
     LaunchedEffect(Unit) {
@@ -57,7 +57,7 @@ fun LoginScreen(
     val rememberMe by viewModel.rememberMe.collectAsState()
 
     Column(
-        modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
+        modifier = Modifier.fillMaxSize().background(Color.White).padding(horizontal = 26.dp)
     ) {
         AppLogoLabel()
         WelcomeLabel(

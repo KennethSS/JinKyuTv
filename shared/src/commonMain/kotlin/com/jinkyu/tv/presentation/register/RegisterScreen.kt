@@ -2,6 +2,7 @@ package com.jinkyu.tv.presentation.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -41,7 +42,6 @@ import kotlinx.coroutines.flow.collectLatest
 fun RegisterScreen(
     navigateLogin: () -> Unit,
     navigateMain: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: RegisterViewModel
 ) {
     LaunchedEffect(Unit) {
@@ -60,7 +60,7 @@ fun RegisterScreen(
     val rememberMe by viewModel.rememberMe.collectAsState()
 
     Column(
-        modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
+        modifier = Modifier.fillMaxSize().background(Color.White).padding(horizontal = 26.dp)
     ) {
         AppLogoLabel()
         WelcomeLabel(
