@@ -45,7 +45,7 @@ fun AppNavHost(
             route = Register.route
         ) {
             RegisterRoute(
-                navigateLogin = { navController.navigateLogin() },
+                navigateLogin = { navController.navigateUp() },
                 navigateMain = { navController.navigateMain() }
             )
         }

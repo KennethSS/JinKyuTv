@@ -5,9 +5,9 @@ import androidx.navigation.NavOptions
 
 internal fun NavController.navigateRegister() {
     navigate(
-        route = Login.route,
+        route = Register.route,
         navOptions = NavOptions.Builder()
-            .setPopUpTo(Splash.route, true)
+            .setPopUpTo(Register.route, true)
             .build(),
     )
 }
