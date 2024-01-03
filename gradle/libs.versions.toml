@@ -15,6 +15,7 @@ koin = "3.5.3"
 koin-compose = "1.1.2"
 ktor = "2.2.3"
 googleService = "4.4.0"
+compose-image-loader = "1.7.1"
 
 firebaseBom = "32.4.0"
 firebaseCrashlyticsPlugin = "2.9.9"
@@ -56,6 +57,7 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 firebase-performance = { group = "com.google.firebase", name = "firebase-perf-ktx" }
 firebase-performance-gradle = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
 
+compose-image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "compose-image-loader" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

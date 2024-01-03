@@ -59,6 +59,7 @@ kotlin {
                 implementation(libs.gitlive.firebase.database)
                 implementation(libs.kotlin.serialization)
                 implementation(libs.kotlin.datetime)
+                implementation(libs.compose.image.loader)
             }
         }
         val androidMain by getting {
