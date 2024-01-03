@@ -32,29 +32,34 @@ actual fun platformModule() = module {
     factory {
         SplashViewModel(null)
     }
-    factoryOf(::PlayerViewModel)
+    factory {
+        PlayerViewModel()
+    }
 }
 
 @OptIn(ExperimentalForeignApi::class)
 @Composable
-actual fun VideoPlayer(modifier: Modifier, url: String) {
-    val player = remember { AVPlayer(uRL = NSURL.URLWithString(url)!!) }
-    val playerLayer = remember { AVPlayerLayer() }
+actual fun VideoPlayer(
+    modifier: Modifier,
+    playerViewModel: PlayerViewModel
+) {
+
     val avPlayerViewController = remember { AVPlayerViewController() }
-    avPlayerViewController.player = player
-    avPlayerViewController.showsPlaybackControls = true
+    val playerLayer = remember { AVPlayerLayer() }
+
+    avPlayerViewController.player = playerViewModel.player
+    avPlayerViewController.showsPlaybackControls = false
     avPlayerViewController.allowsPictureInPicturePlayback = true
 
-    playerLayer.player = player
+    playerLayer.player = playerViewModel.player
 
     // Use a UIKitView to integrate with your existing UIKit views
     UIKitView(
         factory = {
             // Create a UIView to hold the AVPlayerLayer
-            val playerContainer = UIView()
-            playerContainer.addSubview(avPlayerViewController.view)
-            // Return the playerContainer as the root UIView
-            playerContainer
+            UIView().apply {
+                addSubview(avPlayerViewController.view)
+            }
         },
         onResize = { view: UIView, rect: CValue<CGRect> ->
             CATransaction.begin()
@@ -65,7 +70,6 @@ actual fun VideoPlayer(modifier: Modifier, url: String) {
             CATransaction.commit()
         },
         update = { view ->
-            player.play()
             avPlayerViewController.player!!.play()
         },
         modifier = modifier
