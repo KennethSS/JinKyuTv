@@ -94,8 +94,8 @@ fun LoginScreen(
         )
         SocialLoginDivider()
         SocialLoginButtons(
-            onGitHubButtonClicked = { viewModel.onSignUpClicked() },
-            onGitLabButtonClicked = { viewModel.onSignUpClicked() }
+            onGitHubButtonClicked = { },
+            onGitLabButtonClicked = { }
         )
         DividerWeight()
         AlreadyTextButton(
