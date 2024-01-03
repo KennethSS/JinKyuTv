@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,7 +32,7 @@ fun Button(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentSize()
+            .height(45.dp)
             .clip(shape = RoundedCornerShape(4.dp))
     ) {
         Text(

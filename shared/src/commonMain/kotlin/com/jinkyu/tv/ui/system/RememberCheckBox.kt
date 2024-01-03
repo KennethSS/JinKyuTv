@@ -45,7 +45,7 @@ fun RememberCheckBox(
             fontSize = 14.sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
+            color = Color(0xFF000C14),
         )
         DividerWeight()
         Text(

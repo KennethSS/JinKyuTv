@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -88,7 +89,8 @@ fun MainScreen(
             )
 
             JinKyuTextField(
-                modifier = Modifier,
+                modifier = Modifier
+                    .padding(horizontal = 12.dp, vertical = 4.dp),
                 text = mainViewModel.message.value,
                 onValueChange = { mainViewModel.onTyping(it) },
                 hint = "",
