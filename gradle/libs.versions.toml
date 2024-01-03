@@ -12,6 +12,7 @@ exoplayer = "1.1.0"
 koin = "3.5.3"
 koin-compose = "1.1.2"
 ktor = "2.2.3"
+compose-image-loader = "1.7.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -35,6 +36,7 @@ ktor-serialization = { module = "io.ktor:ktor-client-content-negotiation", versi
 ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
+compose-image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "compose-image-loader" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
