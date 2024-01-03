@@ -58,6 +58,7 @@ kotlin {
                 implementation(libs.ktor.serialization.json)
                 implementation(libs.gitlive.firebase.database)
                 implementation(libs.kotlin.serialization)
+                implementation(libs.kotlin.datetime)
             }
         }
         val androidMain by getting {

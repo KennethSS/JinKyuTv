@@ -79,4 +79,6 @@ class UserRepositoryImpl(
             Result.Error(Throwable(message = "로그인이 안된 상태입니다."))
         }
     }
+
+    override fun getUserNickName(): String = _userName
 }

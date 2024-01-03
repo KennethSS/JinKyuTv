@@ -40,7 +40,7 @@ actual fun platformModule() = module {
     }
     single<UserRepository> { UserRepositoryImpl(get()) }
     factory {
-        MainViewModel(null)
+        MainViewModel(null, get())
     }
 
     factory {

@@ -2,19 +2,25 @@ package com.jinkyu.tv.presentation
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.domain.chat.Chat
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.database.ChildEvent
 import dev.gitlive.firebase.database.database
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.job
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterNot
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.DateTimeUnit
+import kotlinx.datetime.minus
+import kotlin.time.Duration
 
 class MainViewModel(
-    private val coroutineScope: CoroutineScope?
+    private val coroutineScope: CoroutineScope?,
+    private val userRepository: UserRepository
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Default)
 
@@ -42,20 +48,22 @@ class MainViewModel(
     private fun observeMessage() {
         viewModelScope.launch {
             db.childEvents()
-                .collect { childEvent ->
-                    if (childEvent.type == ChildEvent.Type.ADDED) {
-                        val chat = childEvent.snapshot.value<Chat>()
-                        chatList.add(chat)
-                    }
+                .filter { it.type == ChildEvent.Type.ADDED }
+                .map { it.snapshot.value<Chat>() }
+                .filter {
+                    val now = Clock.System.now()
+                    val atLeastValidChatPeriod = now.minus(30, DateTimeUnit.SECOND).epochSeconds
+                    it.date > atLeastValidChatPeriod
                 }
+                .collect { chat -> chatList.add(chat) }
         }
-
     }
 
     fun sendMessage() {
         val chat = Chat(
-            nickname = "kenneth",
-            message = message.value
+            nickname = userRepository.getUserNickName(),
+            message = message.value,
+            date = Clock.System.now().epochSeconds
         )
 
         viewModelScope.launch {

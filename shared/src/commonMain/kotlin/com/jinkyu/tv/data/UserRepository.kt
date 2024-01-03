@@ -18,4 +18,6 @@ interface UserRepository {
     ): Result<PostLoginResponse?>
 
     suspend fun getUserName(): Result<String>
+
+    fun getUserNickName(): String
 }
