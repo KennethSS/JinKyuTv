@@ -5,13 +5,13 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RegisterRoute(
-    navigateMain: () -> Unit,
+    navigateVideoList: () -> Unit,
     navigateLogin: () -> Unit,
     viewModel: AndroidRegisterViewModel = koinViewModel()
 ) {
     RegisterScreen(
         navigateLogin = navigateLogin,
-        navigateMain = navigateMain,
+        navigateMain = navigateVideoList,
         viewModel = viewModel.viewModel
     )
 }

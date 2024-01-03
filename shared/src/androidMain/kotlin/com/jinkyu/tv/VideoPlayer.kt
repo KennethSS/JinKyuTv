@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,6 +26,15 @@ actual fun VideoPlayer(
     modifier: Modifier,
     playerViewModel: PlayerViewModel
 ) {
+    val playing = LocalPlayerPlaying.current
+
+    /*LaunchedEffect(playing) {
+        if (playing) {
+            playerViewModel.play()
+        } else {
+            playerViewModel.pause()
+        }
+    }*/
 
     var lifecycle by remember {
         mutableStateOf(Lifecycle.Event.ON_CREATE)
@@ -59,10 +70,10 @@ actual fun VideoPlayer(
         update = {
             when (lifecycle) {
                 Lifecycle.Event.ON_PAUSE -> {
-                    playerViewModel.pause()
+                    //playerViewModel.pause()
                 }
                 Lifecycle.Event.ON_RESUME -> {
-                    playerViewModel.play()
+                    //playerViewModel.play()
                     //it.onResume()
                     //it.player?.play()
                 }
@@ -74,7 +85,7 @@ actual fun VideoPlayer(
 
 private fun makePlayerView(context: Context): PlayerView {
     return PlayerView(context).apply {
-        useController = false
+        useController = true
     }
 }
 

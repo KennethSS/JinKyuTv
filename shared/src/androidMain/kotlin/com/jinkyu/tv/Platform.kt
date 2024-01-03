@@ -42,7 +42,7 @@ actual fun platformModule() = module {
         ExoPlayer.Builder(param.get())
     }
     factory { param ->
-        PlayerViewModel()
+        PlayerViewModel(param.get())
     }
     factory { params ->
         RegisterViewModel(params.get(), params.get())

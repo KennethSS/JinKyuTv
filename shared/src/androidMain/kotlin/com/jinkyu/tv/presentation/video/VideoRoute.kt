@@ -6,11 +6,11 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun VideoRoute(
-    navigateMain: (String) -> Unit,
+    navigatePlayer: (String) -> Unit,
     viewModel: AndroidVideoViewModel = koinViewModel()
 ) {
     VideoScreen(
-        navigateMain = navigateMain,
+        navigateVideo = navigatePlayer,
         viewModel = viewModel.viewModel
     )
 }

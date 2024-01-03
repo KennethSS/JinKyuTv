@@ -1,6 +1,8 @@
 package com.jinkyu.tv
 
 import android.app.PictureInPictureParams
+import android.app.RemoteAction
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Rational
 import androidx.activity.ComponentActivity
@@ -25,30 +27,55 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.jinkyu.tv.navigation.AppNavHost
+import com.jinkyu.tv.navigation.Player
 
 class AppActivity : ComponentActivity() {
 
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
+            val navController: NavHostController = rememberNavController()
+            this.navController = navController
             MyApplicationTheme {
-                AppNavHost()
+                AppNavHost(navController)
             }
         }
     }
 
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
-        val aspectRatio = Rational(16, 9)
+        val currentRoute = navController.currentBackStackEntry?.destination?.route.orEmpty()
 
-        val params =
-            PictureInPictureParams
-                .Builder()
-                .setAspectRatio(aspectRatio)
-                .build()
+        if (currentRoute.contains(Player.route)) {
+            val aspectRatio = Rational(16, 9)
 
-        enterPictureInPictureMode(params)
+            val params =
+                PictureInPictureParams
+                    .Builder()
+                    .setAspectRatio(aspectRatio)
+                    .build()
+
+            enterPictureInPictureMode(params)
+        }
+    }
+
+    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean, newConfig: Configuration) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isInPictureInPictureMode) {
+            LocalPlayerPlaying.provides(true)
+        } else {
+            LocalPlayerPlaying.provides(false)
+        }
     }
 }
 

@@ -6,12 +6,12 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun LoginRoute(
     navigateRegister: () -> Unit,
-    navigateMain: () -> Unit,
+    navigateVideoList: () -> Unit,
     viewModel: AndroidLoginViewModel = koinViewModel()
 ) {
     LoginScreen(
         navigateRegister = navigateRegister,
-        navigateMain = navigateMain,
+        navigateMain = navigateVideoList,
         viewModel = viewModel.viewModel
     )
 }

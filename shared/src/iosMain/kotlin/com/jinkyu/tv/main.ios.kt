@@ -1,21 +1,15 @@
 package com.jinkyu.tv
 
 import androidx.compose.ui.uikit.ComposeUIViewControllerDelegate
-import androidx.compose.ui.uikit.OnFocusBehavior
 import androidx.compose.ui.window.ComposeUIViewController
 import com.jinkyu.tv.presentation.login.LoginScreen
-import com.jinkyu.tv.presentation.player.PlayerViewModel
 import com.jinkyu.tv.presentation.register.RegisterScreen
 import com.jinkyu.tv.presentation.splash.SplashScreen
 import com.jinkyu.tv.presentation.videos.VideoScreen
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import org.koin.compose.koinInject
 import platform.AVFAudio.AVAudioSession
-import platform.AVFAudio.AVAudioSessionCategory
-import platform.AVFAudio.AVAudioSessionCategoryOptions
-import platform.AVFAudio.AVAudioSessionMode
 import platform.UIKit.UIViewController
 
 fun SplashViewController(
@@ -59,7 +53,7 @@ fun VideoViewController(
 ): UIViewController {
     return ComposeUIViewController {
         VideoScreen(
-            navigateMain = navigateMain
+            navigateVideo = navigateMain
         )
     }
 }

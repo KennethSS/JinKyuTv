@@ -34,12 +34,15 @@ import com.jinkyu.tv.ui.icon.PlayCircle
 import com.jinkyu.tv.ui.icon.Replay10
 import com.jinkyu.tv.ui.system.JinKyuTextField
 import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MainScreen(
+    url: String,
     mainViewModel: MainViewModel = koinInject(),
-    playerViewModel: PlayerViewModel = koinInject()
+    playerViewModel: PlayerViewModel = koinInject {
+        parametersOf(url)
+    }
 ) {
     var visibleController by remember { mutableStateOf(false) }
     //val keyboardController = LocalSoftwareKeyboardController.current
@@ -68,7 +71,7 @@ fun MainScreen(
                     modifier = Modifier,
                     playerViewModel = playerViewModel
                 )
-                if (visibleController) {
+                /*if (visibleController) {
                     VideoController(
                         onClickBackground = { visibleController = false }
                     )
@@ -79,7 +82,7 @@ fun MainScreen(
                             .aspectRatio(16 / 9f)
                             .clickable { visibleController = true }
                     )
-                }
+                }*/
             }
             ChatList(
                 modifier = Modifier

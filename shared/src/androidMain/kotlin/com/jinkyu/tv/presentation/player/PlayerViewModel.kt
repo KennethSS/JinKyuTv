@@ -4,7 +4,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 
 actual class PlayerViewModel(
-    private val url: String = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    private val url: String
 ): MediaPlayer {
 
     var player: Player? = null

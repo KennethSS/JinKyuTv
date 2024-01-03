@@ -4,10 +4,13 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.jinkyu.tv.MainScreen
 import com.jinkyu.tv.presentation.login.LoginRoute
 import com.jinkyu.tv.presentation.register.RegisterRoute
@@ -16,10 +19,11 @@ import com.jinkyu.tv.presentation.video.VideoRoute
 
 @Composable
 fun AppNavHost(
+    navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = Splash.route
+    startDestination: String = Video.route
 ) {
-    val navController: NavHostController = rememberNavController()
+
 
     NavHost(
         navController = navController,
@@ -30,7 +34,7 @@ fun AppNavHost(
             route = Splash.route
         ) {
             SplashRoute(
-                navigateMain = { navController.navigateMain() },
+                navigateMain = { navController.navigateVideo() },
                 navigateLogin = { navController.navigateLogin() }
             )
         }
@@ -39,7 +43,7 @@ fun AppNavHost(
             enterTransition = { slideInFromRight() }
         ) {
             LoginRoute(
-                navigateMain = { navController.navigateMain(Login.route) },
+                navigateVideoList = { navController.navigateVideo(Login.route) },
                 navigateRegister = { navController.navigateRegister() }
             )
         }
@@ -49,7 +53,7 @@ fun AppNavHost(
         ) {
             RegisterRoute(
                 navigateLogin = { navController.navigateUp() },
-                navigateMain = { navController.navigateMain(Register.route) }
+                navigateVideoList = { navController.navigateVideo(Register.route) }
             )
         }
         composable(
@@ -57,14 +61,15 @@ fun AppNavHost(
             enterTransition = { slideInFromRight() }
         ) {
             VideoRoute(
-                navigateMain = { navController.navigateMain() }
+                navigatePlayer = { navController.navigatePlayer(it) }
             )
         }
         composable(
-            route = Main.route,
+            route = "${Player.route}/{url}",
+            arguments = listOf(navArgument("url") { type = NavType.StringType }),
             enterTransition = { slideInFromRight() }
-        ) {
-            MainScreen()
+        ) { backStackEntry ->
+            MainScreen(backStackEntry.arguments?.getString("url").orEmpty())
         }
     }
 }

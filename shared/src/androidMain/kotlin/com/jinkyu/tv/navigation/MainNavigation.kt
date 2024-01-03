@@ -2,18 +2,20 @@ package com.jinkyu.tv.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
-internal fun NavController.navigateMain(
-    popup: String = Splash.route
+internal fun NavController.navigatePlayer(
+    url: String,
 ) {
+    val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
     navigate(
-        route = Main.route,
+        route = "${Player.route}/$encodedUrl",
         navOptions = NavOptions.Builder()
-            .setPopUpTo(popup, true)
             .build(),
     )
 }
 
-internal object Main {
-    const val route: String = "main"
+object Player {
+    const val route: String = "player"
 }
