@@ -12,6 +12,7 @@ import com.jinkyu.tv.MainScreen
 import com.jinkyu.tv.presentation.login.LoginRoute
 import com.jinkyu.tv.presentation.register.RegisterRoute
 import com.jinkyu.tv.presentation.splash.SplashRoute
+import com.jinkyu.tv.presentation.video.VideoRoute
 
 @Composable
 fun AppNavHost(
@@ -49,6 +50,14 @@ fun AppNavHost(
             RegisterRoute(
                 navigateLogin = { navController.navigateUp() },
                 navigateMain = { navController.navigateMain(Register.route) }
+            )
+        }
+        composable(
+            route = Video.route,
+            enterTransition = { slideInFromRight() }
+        ) {
+            VideoRoute(
+                navigateMain = { navController.navigateMain() }
             )
         }
         composable(
