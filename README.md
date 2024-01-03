@@ -1,4 +1,6 @@
-
+## TroubleShooting
+- gitlive firebase 1.10.4 로 최신
+- common에서 오류 발생 
 
 - https://medium.com/@maruchin/kmm-architecture-6-coroutines-b683db8516
 
