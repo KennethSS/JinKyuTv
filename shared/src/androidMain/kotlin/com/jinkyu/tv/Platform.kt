@@ -25,14 +25,13 @@ actual fun platformModule() = module {
                 json()
             }
         }
-
     }
     single<UserRepository> { UserRepositoryImpl(get()) }
     factory { params ->
         SplashViewModel(params.get())
     }
     factory { param ->
-        MainViewModel(null)
+        MainViewModel(null, get())
     }
     factory { param ->
         ExoPlayer.Builder(param.get())

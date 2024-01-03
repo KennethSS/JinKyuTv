@@ -38,7 +38,7 @@ fun AppNavHost(
             enterTransition = { slideInFromRight() }
         ) {
             LoginRoute(
-                navigateMain = { navController.navigateMain() },
+                navigateMain = { navController.navigateMain(Login.route) },
                 navigateRegister = { navController.navigateRegister() }
             )
         }
@@ -48,7 +48,7 @@ fun AppNavHost(
         ) {
             RegisterRoute(
                 navigateLogin = { navController.navigateUp() },
-                navigateMain = { navController.navigateMain() }
+                navigateMain = { navController.navigateMain(Register.route) }
             )
         }
         composable(
