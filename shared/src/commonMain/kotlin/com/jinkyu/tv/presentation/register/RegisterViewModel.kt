@@ -1,19 +1,32 @@
-package com.jinkyu.tv.presentation
+package com.jinkyu.tv.presentation.register
 
+import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.domain.user.UserInput
+import com.jinkyu.tv.presentation.login.LoginNavigationAction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val coroutineScope: CoroutineScope? = null
+    private val coroutineScope: CoroutineScope? = null,
+    private val userRepository: UserRepository
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
+
+    private val _navigationAction: MutableSharedFlow<RegisterNavigationAction> = MutableSharedFlow<RegisterNavigationAction>()
+    val navigationAction: SharedFlow<RegisterNavigationAction> = _navigationAction.asSharedFlow()
+
+    private val _error: MutableStateFlow<String> = MutableStateFlow<String>("Sign Up")
+    val error: StateFlow<String> = _error.asStateFlow()
 
     private val _email: MutableStateFlow<String> = MutableStateFlow<String>("")
     val email: StateFlow<String> = _email.asStateFlow()
@@ -41,11 +54,32 @@ class RegisterViewModel(
             UserInput.EMAIL -> _email.value = input
             UserInput.PASSWORD -> _password.value = input
         }
+        _error.value = "Sign Up"
     }
 
-    fun onSignUpClicked() {}
+    fun onSignUpClicked() {
+        viewModelScope.launch {
+            if (registerEnable.value) {
+                val result = userRepository.register(
+                    nickName = nickName.value,
+                    email = email.value,
+                    password = password.value
+                )
+                result.data?.let {
+                    _navigationAction.emit(RegisterNavigationAction.NavigateToMain)
+                }
+                result.throwable?.let {
+                    _error.emit(it.message ?: "")
+                }
+            }
+        }
+    }
 
-    fun onBackButtonClicked() {}
+    fun onBackButtonClicked() {
+        viewModelScope.launch {
+            _navigationAction.emit(RegisterNavigationAction.NavigateLogin)
+        }
+    }
 
     fun onRememberMeClicked(enable: Boolean) {
         _rememberMe.value = enable

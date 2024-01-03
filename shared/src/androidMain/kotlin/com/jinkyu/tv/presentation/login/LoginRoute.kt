@@ -1,17 +1,17 @@
-package com.jinkyu.tv.presentation.splash
+package com.jinkyu.tv.presentation.login
 
 import androidx.compose.runtime.Composable
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SplashRoute(
+fun LoginRoute(
+    navigateRegister: () -> Unit,
     navigateMain: () -> Unit,
-    navigateLogin: () -> Unit,
-    viewModel: AndroidSplashViewModel = koinViewModel()
+    viewModel: AndroidLoginViewModel = koinViewModel()
 ) {
-    SplashScreen(
+    LoginScreen(
+        navigateRegister = navigateRegister,
         navigateMain = navigateMain,
-        navigateLogin = navigateLogin,
         viewModel = viewModel.viewModel
     )
 }

@@ -1,17 +1,18 @@
-package com.jinkyu.tv
+package com.jinkyu.tv.presentation.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jinkyu.tv.domain.user.UserInput
-import com.jinkyu.tv.presentation.RegisterViewModel
 import com.jinkyu.tv.ui.AlreadyHaveAccount
 import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.DividerWeight
@@ -35,20 +36,33 @@ import com.jinkyu.tv.ui.system.JinKyuTextField
 import com.jinkyu.tv.ui.system.Label
 import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.compose.koinInject
 
 @Composable
 fun RegisterScreen(
-    modifier: Modifier = Modifier,
-    viewModel: RegisterViewModel
+    navigateLogin: () -> Unit,
+    navigateMain: () -> Unit,
+    viewModel: RegisterViewModel = koinInject()
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.navigationAction.collectLatest { navigation ->
+            when (navigation) {
+                RegisterNavigationAction.NavigateToMain -> navigateMain()
+                RegisterNavigationAction.NavigateLogin -> navigateLogin()
+            }
+        }
+    }
+
     val nickName by viewModel.nickName.collectAsState()
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
     val registerEnable by viewModel.registerEnable.collectAsState()
     val rememberMe by viewModel.rememberMe.collectAsState()
+    val signUpLabel by viewModel.error.collectAsState()
 
     Column(
-        modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
+        modifier = Modifier.fillMaxSize().background(Color.White).padding(horizontal = 26.dp)
     ) {
         AppLogoLabel()
         WelcomeLabel(
@@ -84,7 +98,7 @@ fun RegisterScreen(
         )
         DividerWeight()
         Button(
-            buttonLabel = SignUpLabel,
+            buttonLabel = signUpLabel,
             enable = registerEnable,
             onClicked = { viewModel.onSignUpClicked() }
         )

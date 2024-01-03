@@ -1,23 +1,23 @@
-package com.jinkyu.tv
+package com.jinkyu.tv.presentation.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.jinkyu.tv.domain.user.UserInput
-import com.jinkyu.tv.presentation.LoginViewModel
 import com.jinkyu.tv.ui.Divider
 import com.jinkyu.tv.ui.DividerWeight
 import com.jinkyu.tv.ui.EmailHint
 import com.jinkyu.tv.ui.EmailLabel
 import com.jinkyu.tv.ui.HaveNotAccount
-import com.jinkyu.tv.ui.LoginLabel
 import com.jinkyu.tv.ui.LoginMessage1
 import com.jinkyu.tv.ui.LoginMessage2
 import com.jinkyu.tv.ui.PasswordHint
@@ -33,19 +33,32 @@ import com.jinkyu.tv.ui.system.JinKyuTextField
 import com.jinkyu.tv.ui.system.Label
 import com.jinkyu.tv.ui.system.RememberCheckBox
 import com.jinkyu.tv.ui.system.WelcomeLabel
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.compose.koinInject
 
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier,
-    viewModel: LoginViewModel
+    navigateRegister: () -> Unit,
+    navigateMain: () -> Unit,
+    viewModel: LoginViewModel = koinInject()
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.navigationAction.collectLatest { navigation ->
+            when (navigation) {
+                LoginNavigationAction.NavigateToMain -> navigateMain()
+                LoginNavigationAction.NavigateRegister -> navigateRegister()
+            }
+        }
+    }
+
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
     val loginEnable by viewModel.loginEnable.collectAsState()
     val rememberMe by viewModel.rememberMe.collectAsState()
+    val loginLabel by viewModel.error.collectAsState()
 
     Column(
-        modifier = modifier.background(Color.White).padding(horizontal = 26.dp)
+        modifier = Modifier.fillMaxSize().background(Color.White).padding(horizontal = 26.dp)
     ) {
         AppLogoLabel()
         WelcomeLabel(
@@ -75,7 +88,7 @@ fun LoginScreen(
         Divider(height = 80)
         DividerWeight()
         Button(
-            buttonLabel = LoginLabel,
+            buttonLabel = loginLabel,
             enable = loginEnable,
             onClicked = { viewModel.onLoginClicked() }
         )

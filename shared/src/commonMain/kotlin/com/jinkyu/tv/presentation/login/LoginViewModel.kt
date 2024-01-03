@@ -1,19 +1,31 @@
-package com.jinkyu.tv.presentation
+package com.jinkyu.tv.presentation.login
 
+import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.domain.user.UserInput
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val coroutineScope: CoroutineScope? = null
+    private val coroutineScope: CoroutineScope? = null,
+    private val userRepository: UserRepository
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
+
+    private val _navigationAction: MutableSharedFlow<LoginNavigationAction> = MutableSharedFlow<LoginNavigationAction>()
+    val navigationAction: SharedFlow<LoginNavigationAction> = _navigationAction.asSharedFlow()
+
+    private val _error: MutableStateFlow<String> = MutableStateFlow<String>("Login")
+    val error: StateFlow<String> = _error.asStateFlow()
 
     private val _email: MutableStateFlow<String> = MutableStateFlow<String>("")
     val email: StateFlow<String> = _email.asStateFlow()
@@ -38,11 +50,28 @@ class LoginViewModel(
             UserInput.PASSWORD -> _password.value = input
             else -> {}
         }
+        _error.value = "Login"
     }
 
-    fun onSignUpClicked() {}
+    fun onSignUpClicked() {
+        viewModelScope.launch {
+            _navigationAction.emit(LoginNavigationAction.NavigateRegister)
+        }
+    }
 
-    fun onLoginClicked() {}
+    fun onLoginClicked() {
+        viewModelScope.launch {
+            if (loginEnable.value) {
+                val result = userRepository.login(email = email.value, password = password.value)
+                result.data?.let {
+                    _navigationAction.emit(LoginNavigationAction.NavigateToMain)
+                }
+                result.throwable?.let {
+                    _error.emit(it.message ?: "")
+                }
+            }
+        }
+    }
 
     fun onRememberMeClicked(enable: Boolean) {
         _rememberMe.value = enable

@@ -3,15 +3,15 @@ package com.jinkyu.tv.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 
-internal fun NavController.navigateMain() {
+internal fun NavController.navigateLogin() {
     navigate(
-        route = Main.route,
+        route = Login.route,
         navOptions = NavOptions.Builder()
             .setPopUpTo(Splash.route, true)
             .build(),
     )
 }
 
-internal object Main {
-    const val route: String = "main"
+internal object Login {
+    const val route: String = "login"
 }

@@ -1,6 +1,5 @@
 package com.jinkyu.tv.presentation.player
 
-import androidx.compose.ui.uikit.ComposeUIViewControllerDelegate
 import platform.AVFoundation.AVPlayer
 import platform.AVFoundation.pause
 import platform.AVFoundation.play
