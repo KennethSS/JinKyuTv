@@ -34,9 +34,6 @@ class AppActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 AppNavHost()
-                BackHandler(true) {
-
-                }
             }
         }
     }
