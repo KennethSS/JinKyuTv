@@ -59,7 +59,7 @@ fun VideoViewController(
 }
 
 @OptIn(ExperimentalForeignApi::class)
-fun MainViewController(): UIViewController {
+fun PlayerViewController(url: String): UIViewController {
 
     //val playerViewModel: PlayerViewModel by koinInject<PlayerViewModel>()
 
@@ -97,7 +97,7 @@ fun MainViewController(): UIViewController {
             delegate = playerDelegate
         },
         content = {
-            MainScreen()
+            MainScreen(url)
         }
     )
 }

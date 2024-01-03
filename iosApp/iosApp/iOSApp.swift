@@ -50,7 +50,20 @@ struct iOSApp: App {
                         )
                     }
                 default:
-                    MainViewController()
+                    VideoListViewController(
+                        navigatePlayer: { url in
+                            navigation.append(Destination.Player(url))
+                        }
+                    )
+                    .navigationDestination(for: Destination.self) { destination in
+                        
+                        switch destination {
+                        case.Player(let url):
+                            PlayerViewController(url: url)
+                        default:
+                            PlayerViewController(url: "")
+                        }
+                    }
                 }
             }
 		}
@@ -62,4 +75,5 @@ enum Destination: Hashable {
     case Login
     case Register
     case Main
+    case Player(String)
 }

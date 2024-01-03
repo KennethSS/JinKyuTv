@@ -8,11 +8,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitView
 import com.jinkyu.tv.data.UserRepository
 import com.jinkyu.tv.data.UserRepositoryImpl
+import com.jinkyu.tv.data.VideoRepository
+import com.jinkyu.tv.data.VideoRepositoryImpl
 import com.jinkyu.tv.presentation.MainViewModel
 import com.jinkyu.tv.presentation.login.LoginViewModel
 import com.jinkyu.tv.presentation.player.PlayerViewModel
 import com.jinkyu.tv.presentation.register.RegisterViewModel
 import com.jinkyu.tv.presentation.splash.SplashViewModel
+import com.jinkyu.tv.presentation.videos.VideoViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -39,6 +42,7 @@ actual fun platformModule() = module {
 
     }
     single<UserRepository> { UserRepositoryImpl(get()) }
+    single<VideoRepository> { VideoRepositoryImpl(get()) }
     factory {
         MainViewModel(null, get())
     }
@@ -54,6 +58,9 @@ actual fun platformModule() = module {
     }
     factory {
         LoginViewModel(null, get())
+    }
+    factory {
+        VideoViewModel(null, get())
     }
 }
 

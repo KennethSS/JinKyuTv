@@ -10,9 +10,11 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		9F1C9D5F2B35E38D006444CF /* ComposeViewControllerToSwiftUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C9D5E2B35E38D006444CF /* ComposeViewControllerToSwiftUi.swift */; };
-		9F294F882B3D379D00EB2D41 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F294F872B3D379D00EB2D41 /* SplashViewController.swift */; };
-		9FB3ADCC2B3DBF7F000B664B /* MainVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3ADCB2B3DBF7F000B664B /* MainVIew.swift */; };
+		9F2ACA162B4553D1001F40BC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2ACA122B4553D1001F40BC /* LoginViewController.swift */; };
+		9F2ACA172B4553D1001F40BC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2ACA132B4553D1001F40BC /* RegisterViewController.swift */; };
+		9F2ACA1B2B4553F0001F40BC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2ACA1A2B4553F0001F40BC /* SplashViewController.swift */; };
+		9F2ACA1D2B455459001F40BC /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2ACA1C2B455459001F40BC /* VideoListViewController.swift */; };
+		9F2ACA232B455A73001F40BC /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2ACA222B455A73001F40BC /* PlayerViewController.swift */; };
 		9FE87BAC2B43F6E8004A25F3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE87BAB2B43F6E8004A25F3 /* FirebaseAnalytics */; };
 		9FE87BAE2B43F6E8004A25F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE87BAD2B43F6E8004A25F3 /* FirebaseAnalyticsOnDeviceConversion */; };
 		9FE87BB02B43F6E8004A25F3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE87BAF2B43F6E8004A25F3 /* FirebaseAnalyticsSwift */; };
@@ -80,9 +82,11 @@
 		63D2034919CC3F9E9E2431CD /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F1C9D5E2B35E38D006444CF /* ComposeViewControllerToSwiftUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerToSwiftUi.swift; sourceTree = "<group>"; };
-		9F294F872B3D379D00EB2D41 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		9FB3ADCB2B3DBF7F000B664B /* MainVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVIew.swift; sourceTree = "<group>"; };
+		9F2ACA122B4553D1001F40BC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9F2ACA132B4553D1001F40BC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9F2ACA1A2B4553F0001F40BC /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = ../../../../../../../../.Trash/SplashViewController.swift; sourceTree = "<group>"; };
+		9F2ACA1C2B455459001F40BC /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
+		9F2ACA222B455A73001F40BC /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		9FE87C192B4470CB004A25F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../.Trash/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,7 +215,10 @@
 		9F294F852B3D376F00EB2D41 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				9FB3ADCA2B3DBF6A000B664B /* Main */,
+				9F2ACA212B455A35001F40BC /* Register */,
+				9F2ACA202B455A2F001F40BC /* Login */,
+				9F2ACA1F2B455A21001F40BC /* Video */,
+				9F2ACA1E2B455A1B001F40BC /* Player */,
 				9F294F862B3D377A00EB2D41 /* Splash */,
 			);
 			path = Presentation;
@@ -220,18 +227,41 @@
 		9F294F862B3D377A00EB2D41 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				9F1C9D5E2B35E38D006444CF /* ComposeViewControllerToSwiftUi.swift */,
-				9F294F872B3D379D00EB2D41 /* SplashViewController.swift */,
+				9F2ACA1A2B4553F0001F40BC /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		9FB3ADCA2B3DBF6A000B664B /* Main */ = {
+		9F2ACA1E2B455A1B001F40BC /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				9FB3ADCB2B3DBF7F000B664B /* MainVIew.swift */,
+				9F2ACA222B455A73001F40BC /* PlayerViewController.swift */,
 			);
-			path = Main;
+			path = Player;
+			sourceTree = "<group>";
+		};
+		9F2ACA1F2B455A21001F40BC /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9F2ACA1C2B455459001F40BC /* VideoListViewController.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		9F2ACA202B455A2F001F40BC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9F2ACA122B4553D1001F40BC /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9F2ACA212B455A35001F40BC /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				9F2ACA132B4553D1001F40BC /* RegisterViewController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,10 +438,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2ACA1D2B455459001F40BC /* VideoListViewController.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				9F1C9D5F2B35E38D006444CF /* ComposeViewControllerToSwiftUi.swift in Sources */,
-				9FB3ADCC2B3DBF7F000B664B /* MainVIew.swift in Sources */,
-				9F294F882B3D379D00EB2D41 /* SplashViewController.swift in Sources */,
+				9F2ACA172B4553D1001F40BC /* RegisterViewController.swift in Sources */,
+				9F2ACA232B455A73001F40BC /* PlayerViewController.swift in Sources */,
+				9F2ACA1B2B4553F0001F40BC /* SplashViewController.swift in Sources */,
+				9F2ACA162B4553D1001F40BC /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
