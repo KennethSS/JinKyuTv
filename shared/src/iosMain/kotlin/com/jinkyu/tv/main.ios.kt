@@ -6,6 +6,7 @@ import com.jinkyu.tv.presentation.login.LoginScreen
 import com.jinkyu.tv.presentation.player.PlayerViewModel
 import com.jinkyu.tv.presentation.register.RegisterScreen
 import com.jinkyu.tv.presentation.splash.SplashScreen
+import com.jinkyu.tv.presentation.videos.VideoScreen
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -47,6 +48,16 @@ fun RegisterViewController(
     return ComposeUIViewController {
         RegisterScreen(
             navigateLogin = navigateLogin,
+            navigateMain = navigateMain
+        )
+    }
+}
+
+fun VideoViewController(
+    navigateMain: (String) -> Unit,
+): UIViewController {
+    return ComposeUIViewController {
+        VideoScreen(
             navigateMain = navigateMain
         )
     }
