@@ -37,6 +37,7 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
     
@@ -55,6 +56,8 @@ kotlin {
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.serialization)
                 implementation(libs.ktor.serialization.json)
+                implementation(libs.gitlive.firebase.database)
+                implementation(libs.kotlin.serialization)
             }
         }
         val androidMain by getting {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "559436443560",
+    "project_id": "jinkyutv-8ef5a",
+    "storage_bucket": "jinkyutv-8ef5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559436443560:android:61fc9673c929db0fe2779d",
+        "android_client_info": {
+          "package_name": "com.jinkyu.tv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvqUcJLh3PO7EbbYeE_kPh-QgUFIukkfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

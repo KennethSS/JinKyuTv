@@ -1,4 +1,4 @@
-package com.jinkyu.tv.android
+package com.jinkyu.tv
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

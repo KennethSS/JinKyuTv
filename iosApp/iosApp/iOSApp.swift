@@ -2,7 +2,7 @@ import SwiftUI
 import shared
 import UIKit
 import Foundation
-import AVFAudio
+import Firebase
 
 @main
 struct iOSApp: App {
@@ -10,6 +10,7 @@ struct iOSApp: App {
     @State var navigation = NavigationPath()
 
     init() {
+        FirebaseApp.configure()
         KoinKt.doInitKoin()
     }
 
@@ -21,33 +22,15 @@ struct iOSApp: App {
                     navigateSign: { navigation.append(Destination.Sign) }
                 ).navigationDestination(for: Destination.self) { destination in
                     switch destination {
-                    case.Main: ComposeViewControllerToSwiftUi().onAppear {
-                        //configureAudioSession()
-                    }
+                    case.Main: ComposeViewControllerToSwiftUi()
                     case.Sign: ComposeViewControllerToSwiftUi()
-                        
                     }
-
                 }
             }
             .ignoresSafeArea(.keyboard)
 		}
 	}
 }
-
-func configureAudioSession() {
-    // Retrieve the shared audio session.
-    let audioSession = AVAudioSession.sharedInstance()
-    do {
-        // Set the audio session category and mode.
-        print("playback")
-        print("playback \(AVAudioSession.Category.playback)")
-        try audioSession.setCategory(.playback)
-    } catch {
-        print("Failed to set the audio session configuration")
-    }
-}
-
 
 enum Destination: Hashable {
     case Sign

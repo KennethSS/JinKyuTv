@@ -32,7 +32,7 @@ actual fun platformModule() = module {
         SplashViewModel(params.get())
     }
     factory { param ->
-        MainViewModel()
+        MainViewModel(null)
     }
     factory { param ->
         ExoPlayer.Builder(param.get())
