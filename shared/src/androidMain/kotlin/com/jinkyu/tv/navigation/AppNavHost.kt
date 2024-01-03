@@ -21,7 +21,7 @@ import com.jinkyu.tv.presentation.video.VideoRoute
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = Video.route
+    startDestination: String = Splash.route
 ) {
 
 
