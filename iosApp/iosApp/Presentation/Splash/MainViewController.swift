@@ -12,7 +12,7 @@ import shared
 
 
 
-struct ComposeViewControllerToSwiftUi: UIViewControllerRepresentable {
+struct MainViewController: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
     

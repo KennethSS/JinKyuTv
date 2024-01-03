@@ -17,7 +17,7 @@ struct SplashViewController : UIViewControllerRepresentable {
     let navigateSign: () -> Void
     
     func makeUIViewController(context: Context) -> UIViewController {
-        return Main_iosKt.SplashViewController(navigateMain: navigateMain, navigateSign: navigateSign)
+        return Main_iosKt.SplashViewController(navigateMain: navigateMain, navigateLogin: navigateSign)
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

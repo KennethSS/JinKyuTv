@@ -1,6 +1,7 @@
 package com.jinkyu.tv
 
 import androidx.compose.ui.uikit.ComposeUIViewControllerDelegate
+import androidx.compose.ui.uikit.OnFocusBehavior
 import androidx.compose.ui.window.ComposeUIViewController
 import com.jinkyu.tv.presentation.login.LoginScreen
 import com.jinkyu.tv.presentation.player.PlayerViewModel
@@ -58,7 +59,10 @@ fun MainViewController(): UIViewController {
     //val playerViewModel: PlayerViewModel by koinInject<PlayerViewModel>()
 
     val playerViewModel = KoinHelper().playerViewModel()
+
+
     val playerDelegate: ComposeUIViewControllerDelegate = object : ComposeUIViewControllerDelegate {
+
         override fun viewDidAppear(animated: Boolean) {
             super.viewDidAppear(animated)
             println("viewDidAppear")

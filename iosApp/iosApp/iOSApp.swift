@@ -8,31 +8,58 @@ import Firebase
 struct iOSApp: App {
 
     @State var navigation = NavigationPath()
+    @State var root = Destination.Splash
 
     init() {
         FirebaseApp.configure()
         KoinKt.doInitKoin()
     }
+    
 
 	var body: some Scene {
 		WindowGroup {
             NavigationStack(path: $navigation) {
-                SplashViewController(
-                    navigateMain: { navigation.append(Destination.Main) },
-                    navigateSign: { navigation.append(Destination.Sign) }
-                ).navigationDestination(for: Destination.self) { destination in
-                    switch destination {
-                    case.Main: ComposeViewControllerToSwiftUi()
-                    case.Sign: ComposeViewControllerToSwiftUi()
+                
+                switch root {
+                case.Splash: 
+                    SplashViewController(
+                        navigateMain: {
+                            root = Destination.Main
+                        },
+                        navigateSign: {
+                            root = Destination.Login
+                        }
+                    )
+                case.Login:
+                    LoginViewController(
+                        navigateMain: {
+                            root = Destination.Main
+                        },
+                        navigateRegister: {
+                            navigation.append(Destination.Register)
+                        }
+                    ).navigationDestination(for: Destination.self) { destination in
+                        RegisterViewController(
+                            navigateMain: {
+                                navigation.removeLast(navigation.count)
+                                root = Destination.Main
+                            },
+                            navigateLogin: { 
+                                navigation.removeLast()
+                            }
+                        )
                     }
+                default:
+                    MainViewController()
                 }
             }
-            .ignoresSafeArea(.keyboard)
 		}
 	}
 }
 
 enum Destination: Hashable {
-    case Sign
+    case Splash
+    case Login
+    case Register
     case Main
 }

@@ -50,10 +50,10 @@ actual fun platformModule() = module {
         PlayerViewModel()
     }
     factory {
-        RegisterViewModel(null, it.get())
+        RegisterViewModel(null, get())
     }
     factory {
-        LoginViewModel(null, it.get())
+        LoginViewModel(null, get())
     }
 }
 
